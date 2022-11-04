@@ -1,6 +1,9 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './Payment.module.scss';
+import LeftContainer from './PaymentLeftContainer';
+import RightContainer from './PaymentRightContainer';
+import Header from '~/layouts/Header/Header';
 
 const cb = classNames.bind(styles);
 
@@ -8,7 +11,13 @@ class Payment extends React.Component {
     render() {
         return (
             <>
-                <h2 className={cb('nothing')}>This is payment page</h2>
+                <Header />
+                <div className={cb('main')}>
+                    <div className={cb('wrapper')}>
+                        <LeftContainer />
+                        <RightContainer />
+                    </div>
+                </div>
             </>
         );
     }

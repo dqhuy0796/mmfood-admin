@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 16px;
+    width: 100%;
+    min-width: 60px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background-color: #0c713d;
+    border-radius: 4px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+    transition: ease-out 0.3s;
+    animation: Slide linear 2s infinite;
+    overflow: hidden;
+    cursor: pointer;
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -10%;
+        background: linear-gradient(125deg, transparent 40%, #ffffff55 60%, transparent 80%);
+        background-size: 400%;
+        transition: ease-out 0.3s;
+    }
+    &:hover {
+        background-color: #0c713ddd;
+    }
+    &:hover::before {
+        animation: Slide linear 5s infinite;
+    }
+}
+
+@keyframes Slide {
+    from {
+        background-position: 400%;
+    }
+    to {
+        background-position: 0%;
+    }
+}

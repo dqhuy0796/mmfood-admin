@@ -3,7 +3,7 @@ import React from 'react';
 import { BiUser } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import RoundButton from '~/components/RoundButton/RoundButton';
+import RoundButton from '~/components/shared/RoundButton';
 import styles from './Navbar.module.scss';
 
 const cb = classNames.bind(styles);
@@ -21,7 +21,7 @@ class Navbar extends React.Component {
     state = {};
     render() {
         return (
-            <div className={cb('navbar', this.props.isCollapsed && 'open')}>
+            <div className={cb('navbar', this.props.isCollapsed && 'collapse')}>
                 <NavbarSearchItem />
                 <ul>
                     {menu.map((item, index) => (

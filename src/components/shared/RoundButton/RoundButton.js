@@ -22,7 +22,12 @@ class RoundButton extends React.Component {
 
     render() {
         return (
-            <button className={cb('wrapper')} to={this.props.to} href={this.props.href} onClick={this.props.onClick}>
+            <button
+                className={cb('wrapper', this.props.primary && 'primary', this.props.className)}
+                to={this.props.to}
+                href={this.props.href}
+                onClick={this.props.onClick}
+            >
                 {this.props.icon}
             </button>
         );

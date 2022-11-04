@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 4px;
+    background: transparent;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #0c713d;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    &:hover {
+        color: #0c713ddd;
+    }
+}
