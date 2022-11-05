@@ -1,9 +1,9 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import Navbar from '~/components/partial/Navbar';
 import HamburgerButton from '~/components/shared/HamburgerButton';
 import LogoFull from '~/components/shared/Logo/LogoFull';
-import Navbar from '~/components/partial/Navbar';
 import RoundButton from '~/components/shared/RoundButton';
 import styles from './Header.module.scss';
 

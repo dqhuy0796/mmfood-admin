@@ -1,22 +1,33 @@
 .wrapper {
-    width: 39%;
-    background-color: #fafafa;
+    margin: 0 auto;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+@media (min-width: 1024px) {
+    .wrapper {
+        width: calc(40% - 6px);
+    }
 }
 
 // PAYMENT
 
 .payment {
-    background: #fff;
-    padding: 8px 16px;
+    padding: 8px 12px;
 
     .header {
         display: flex;
+        align-items: center;
         justify-content: space-between;
         font-size: 1.6rem;
         color: #212121;
     }
     .body {
         margin-top: 8px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 8px;
     }
 }
 
@@ -25,7 +36,6 @@
 .payment-item {
     position: relative;
     border: 1px solid #0b99b9;
-    box-shadow: 0 0 4px 0 #d2ffff;
     border-radius: 6px;
     cursor: pointer;
     .content {
@@ -49,6 +59,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            height: 40px;
             padding-top: 8px;
             border-top: 1px solid #ddd;
             .text {
@@ -60,7 +71,7 @@
                 align-items: center;
                 height: 100%;
                 img {
-                    max-height: 32px;
+                    height: 32px;
                 }
             }
         }
@@ -74,19 +85,16 @@
         padding: 8px;
     }
 }
-.payment-item + .payment-item {
-    margin-top: 8px;
-}
 
 // VOUCHER
 
 .voucher {
-    padding: 12px 16px 0 16px;
-    background: #fff;
+    padding: 8px 12px;
     .title {
+        margin-bottom: 8px;
         font-size: 18px;
+        font-weight: 500;
         color: #333;
-        margin-bottom: 16px;
     }
     .content {
         display: flex;
@@ -116,8 +124,7 @@
 // SUMMARY
 
 .summary {
-    padding: 12px 16px 0 16px;
-    background: #fff;
+    padding: 8px 12px;
     .title {
         font-size: 18px;
         color: #333;
@@ -146,8 +153,7 @@
 // TOTAL
 
 .sum-total {
-    padding: 0 16px 16px;
-    background: #fff;
+    padding: 0 12px 12px;
     margin-top: 0;
     .price {
         display: flex;

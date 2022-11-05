@@ -12,7 +12,7 @@ class Payment extends React.Component {
         return (
             <>
                 <Header />
-                <div className={cb('main')}>
+                <div className={cb('background')}>
                     <div className={cb('wrapper')}>
                         <LeftContainer />
                         <RightContainer />

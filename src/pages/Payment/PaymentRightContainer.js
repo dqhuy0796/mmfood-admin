@@ -105,7 +105,7 @@ const PaymentItem = (props) => (
                 </div>
             </div>
         </div>
-        <div className={cb('check')}>{props.isSelected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}</div>
+        <div className={cb('check')}>{props.selected ? <MdCheckCircle /> : <MdRadioButtonUnchecked />}</div>
     </div>
 );
 const Voucher = (props) => (
@@ -125,7 +125,9 @@ const Voucher = (props) => (
 );
 const Summary = (props) => (
     <div className={cb('summary')}>
-        <p className={cb('title')}>Thông tin đơn hàng</p>
+        <p className={cb('title')}>
+            <span>Thông tin đơn hàng</span>
+        </p>
         <div className={cb('content')}>
             <div className={cb('subtotal')}>
                 <span>Tạm tính (1 sản phẩm)</span>
