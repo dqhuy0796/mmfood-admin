@@ -50,30 +50,6 @@
         }
     }
 }
-.box {
-    padding: 30px;
-    .head {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 30px;
-        span {
-            font-size: 18px;
-            color: #212121;
-            font-weight: 500;
-            padding-top: 0;
-            margin-bottom: 0;
-            display: block;
-        }
-        a {
-            display: block;
-            font-size: 14px;
-            cursor: pointer;
-            color: #1a9cb7;
-            line-height: 28px;
-            text-decoration: none;
-        }
-    }
-}
 
 // ADDRESS DETAIL
 
@@ -112,6 +88,9 @@
             }
         }
     }
+}
+.address-detail + .address-detail {
+    margin-top: 16px;
 }
 
 // TYPE ADDRESS

@@ -1,7 +1,9 @@
 .wrapper {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
     width: 100%;
-    background-color: #fff;
+    background-color: var(--color-white);
     border-radius: 4px;
 }
 
@@ -15,18 +17,20 @@
 
 .payment {
     padding: 8px 12px;
-
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        font-size: 1.6rem;
-        color: #212121;
+        .title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
     }
     .body {
         margin-top: 8px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
         gap: 8px;
     }
 }
@@ -35,9 +39,9 @@
 
 .payment-item {
     position: relative;
-    border: 1px solid #0b99b9;
+    border: 1px solid var(--color-primary);
     border-radius: 6px;
-    cursor: pointer;
+    // cursor: pointer;
     .content {
         flex: 1;
         padding: 8px 16px;
@@ -51,8 +55,8 @@
                 margin-right: 8px;
             }
             .text {
-                font-size: 14px;
-                color: #333;
+                font-size: 1.4rem;
+                color: var(--color-text);
             }
         }
         .footer {
@@ -63,7 +67,7 @@
             padding-top: 8px;
             border-top: 1px solid #ddd;
             .text {
-                font-size: 12px;
+                font-size: 1.2rem;
                 color: #757575;
             }
             .payment-list {
@@ -83,6 +87,7 @@
         right: 0;
         top: 0;
         padding: 8px;
+        color: var(--color-primary);
     }
 }
 
@@ -92,9 +97,9 @@
     padding: 8px 12px;
     .title {
         margin-bottom: 8px;
-        font-size: 18px;
-        font-weight: 500;
-        color: #333;
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-text);
     }
     .content {
         display: flex;
@@ -111,10 +116,10 @@
                 width: 100%;
                 height: 100%;
                 padding: 8px 16px;
-                font-size: 14px;
+                font-size: 1.4rem;
                 font-weight: 400;
                 border-radius: 6px;
-                border: 1px solid #0c713d;
+                border: 1px solid var(--color-primary);
                 outline: none;
             }
         }
@@ -125,50 +130,48 @@
 
 .summary {
     padding: 8px 12px;
-    .title {
-        font-size: 18px;
-        color: #333;
+    margin-top: auto;
+    .header {
         margin-bottom: 16px;
+        .title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
     }
-    .content {
-        width: 100%;
+    .body {
         .subtotal,
         .shipping-cost {
             display: flex;
             justify-content: space-between;
             margin-bottom: 16px;
             span {
-                font-size: 14px;
-                color: #757575;
+                font-size: 1.4rem;
+                color: var(--color-shadow);
                 &:last-child {
-                    font-size: 16px;
+                    font-size: 1.6rem;
                     font-weight: 500;
-                    color: #333;
+                    color: var(--color-text);
                 }
             }
         }
     }
-}
-
-// TOTAL
-
-.sum-total {
-    padding: 0 12px 12px;
-    margin-top: 0;
-    .price {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 8px;
-        margin-bottom: 12px;
-        border-top: 1px solid #ddd;
-        span {
-            font-size: 14px;
-            color: #202020;
-            &:last-child {
-                font-size: 16px;
-                font-weight: 500;
-                color: #f52432;
+    .footer {
+        .price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 8px;
+            margin-bottom: 12px;
+            border-top: 1px solid var(--color-border);
+            span {
+                font-size: 14px;
+                color: var(--color-text);
+                &:last-child {
+                    font-size: 16px;
+                    font-weight: 500;
+                    color: var(--color-red);
+                }
             }
         }
     }

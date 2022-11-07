@@ -3,6 +3,7 @@ import React from 'react';
 import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import EditAddressModal from '~/components/modals/EditAddressModal';
+import CartItem from '~/components/partial/CartItem';
 import TransparentButton from '~/components/shared/TransparentButton';
 import styles from './PaymentLeftContainer.module.scss';
 
@@ -13,7 +14,28 @@ const customer = {
     phone: '0988 999 555',
     address: 'Tổ 4, phường Tân Thịnh, thành phố Thái Nguyên',
 };
+const cartItems = [
+    {
+        id: 1003,
+        name: 'bánh canh ghẹ (đặt biệt)',
+        oldPrice: 85000,
+        newPrice: 75000,
+        size: 'vừa',
+        description: 'ngon vl',
+        url: 'https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg',
+    },
+    {
+        id: 2004,
+        name: "trà sữa trân châu M'M",
+        oldPrice: 35000,
+        newPrice: 35000,
+        size: 'vừa',
+        description: 'ngon vắt lưỡi',
+        url: 'https://res.cloudinary.com/dqhuy/image/upload/v1667640606/MMFood/Drink/trasua-tranchau_lcaggq.jpg',
+    },
+];
 class LeftContainer extends React.Component {
+    state = {};
     render() {
         return (
             <div className={cb('wrapper')}>
@@ -70,8 +92,13 @@ const Package = (props) => (
             <span>Gói hàng 1 của 1</span>
         </p>
         <DeliveryService />
-        <CartItemDetail />
-        <CartItemDetail />
+        <ul className={cb('cart')}>
+            {cartItems.map((item, index) => (
+                <li key={index}>
+                    <CartItem data={item} />
+                </li>
+            ))}
+        </ul>
     </div>
 );
 class DeliveryService extends React.Component {

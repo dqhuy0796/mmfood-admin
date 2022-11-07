@@ -51,7 +51,6 @@ class RightContainer extends React.Component {
                 <PaymentMethod />
                 <Voucher />
                 <Summary />
-                <Total />
             </div>
         );
     }
@@ -70,7 +69,9 @@ class PaymentMethod extends React.Component {
         return (
             <div className={cb('payment')}>
                 <div className={cb('header')}>
-                    <span>Chọn phương thức thanh toán</span>
+                    <p className={cb('title')}>
+                        <span>Chọn phương thức thanh toán</span>
+                    </p>
                     <TransparentButton onClick={this.handleCollapseModal}>
                         <span>Xem tất cả</span>
                     </TransparentButton>
@@ -116,7 +117,7 @@ const Voucher = (props) => (
                 <input placeholder="Nhập mã giảm giá(mã chỉ áp dụng 1)" />
             </div>
             <div className={cb('voucher-btn')}>
-                <PrimaryButton>
+                <PrimaryButton primary>
                     <span>Áp dụng</span>
                 </PrimaryButton>
             </div>
@@ -125,30 +126,30 @@ const Voucher = (props) => (
 );
 const Summary = (props) => (
     <div className={cb('summary')}>
-        <p className={cb('title')}>
-            <span>Thông tin đơn hàng</span>
-        </p>
-        <div className={cb('content')}>
+        <div className={cb('header')}>
+            <p className={cb('title')}>
+                <span>Thông tin đơn hàng</span>
+            </p>
+        </div>
+        <div className={cb('body')}>
             <div className={cb('subtotal')}>
-                <span>Tạm tính (1 sản phẩm)</span>
+                <span>Tạm tính (1 sản phẩm):</span>
                 <span>102.100 ₫</span>
             </div>
             <div className={cb('shipping-cost')}>
-                <span>Phí vận chuyển</span>
+                <span>Phí vận chuyển:</span>
                 <span>10.100 ₫</span>
             </div>
         </div>
-    </div>
-);
-const Total = (props) => (
-    <div className={cb('sum-total')}>
-        <div className={cb('price')}>
-            <span>Tổng cộng:</span>
-            <span>89.777 ₫</span>
+        <div className={cb('footer')}>
+            <div className={cb('price')}>
+                <span>Tổng cộng:</span>
+                <span>89.777 ₫</span>
+            </div>
+            <PrimaryButton primary>
+                <span>Đặt hàng</span>
+            </PrimaryButton>
         </div>
-        <PrimaryButton>
-            <span>Đặt hàng</span>
-        </PrimaryButton>
     </div>
 );
 export default RightContainer;

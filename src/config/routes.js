@@ -1,11 +1,15 @@
 const routes = {
     home: '/',
-    account: '/account',
-    detail: '/detail',
+    food: '/food',
+    drink: '/drink',
+    hotpot: '/hotpot',
+    topping: '/topping',
+    promotion: '/promotion',
+    about: '/about',
     login: '/login',
-    payment: '/payment',
-    order: '/order',
     search: '/search',
+    payment: '/payment',
+    account: '/account',
 };
 
 export default routes;

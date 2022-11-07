@@ -2,19 +2,20 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { BiUser } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
 import RoundButton from '~/components/shared/RoundButton';
 import styles from './Navbar.module.scss';
+import NavbarItem from './NavbarItem';
+import config from '~/config';
 
 const cb = classNames.bind(styles);
 
 const menu = [
-    { title: 'đồ ăn', path: '/food' },
-    { title: 'đồ uống', path: '/drink' },
-    { title: 'lẩu', path: '/hotpot' },
-    { title: 'topping', path: '/topping' },
-    { title: 'khuyến mãi', path: '/discount' },
-    { title: 'về chúng tôi', path: '/about' },
+    { title: 'đồ ăn', path: config.routes.food },
+    { title: 'đồ uống', path: config.routes.drink },
+    { title: 'lẩu', path: config.routes.hotpot },
+    { title: 'topping', path: config.routes.topping },
+    { title: 'khuyến mãi', path: config.routes.promotion },
+    { title: 'về chúng tôi', path: config.routes.about },
 ];
 
 class Navbar extends React.Component {
@@ -35,14 +36,6 @@ class Navbar extends React.Component {
         );
     }
 }
-
-const NavbarItem = (props) => (
-    <div className={cb('nav-item')}>
-        <Link to={props.path} className={cb('nav-link')}>
-            {props.title}
-        </Link>
-    </div>
-);
 
 const NavbarSearchItem = (props) => (
     <div className={cb('nav-search-item')}>

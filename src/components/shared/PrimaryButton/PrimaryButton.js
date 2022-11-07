@@ -5,19 +5,24 @@ import { Link } from 'react-router-dom';
 
 const cb = classNames.bind(styles);
 
-class PrimaryButton extends React.Component {
-    render() {
-        return (
-            <button
-                className={cb('wrapper', this.props.className)}
-                to={this.props.to}
-                href={this.props.href}
-                onClick={this.props.onClick}
-            >
-                {this.props.children}
-            </button>
-        );
+function PrimaryButton({ className, children, to, href, onClick, ...props }) {
+    const btnProps = { onClick, ...props };
+    const classes = cb('wrapper', { [className]: className, onClick, ...props });
+    let Comp = 'div';
+    if (to) {
+        Comp = Link;
+        btnProps.to = to;
+    } else if (href) {
+        Comp = 'a';
+        btnProps.href = href;
+    } else {
+        Comp = 'button';
     }
+    return (
+        <Comp className={classes} {...btnProps}>
+            {children}
+        </Comp>
+    );
 }
 
 export default PrimaryButton;

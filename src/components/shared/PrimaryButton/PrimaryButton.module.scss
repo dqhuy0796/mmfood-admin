@@ -11,8 +11,6 @@
     font-weight: 500;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
-    color: #fff;
-    background-color: #0c713d;
     border-radius: 4px;
     box-shadow: none;
     outline: none;
@@ -30,11 +28,32 @@
         transition: ease-out 0.3s;
     }
     &:hover {
-        background-color: #0c713ddd;
+        box-shadow: 0 0 5px 1px var(--color-shadow);
     }
     &:hover::before {
         animation: Slide linear 5s infinite;
     }
+}
+.wrapper.white {
+    color: var(--color-text);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-border);
+}
+.wrapper.black {
+    color: var(--color-white);
+    background-color: var(--color-black);
+}
+.wrapper.primary {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+}
+.wrapper.orange {
+    color: var(--color-white);
+    background-color: var(--color-orange);
+}
+.wrapper.red {
+    color: var(--color-white);
+    background-color: var(--color-red);
 }
 
 @keyframes Slide {

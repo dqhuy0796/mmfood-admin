@@ -1,8 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { MdCheckCircle, MdClose, MdOutlineRadioButtonUnchecked, MdAddLocation } from 'react-icons/md';
+import { MdAddLocation, MdCheckCircle, MdClose, MdOutlineRadioButtonUnchecked } from 'react-icons/md';
 import RoundButton from '~/components/shared/RoundButton';
-import PrimaryButton from '~/components/shared/PrimaryButton';
 import TransparentButton from '~/components/shared/TransparentButton';
 import styles from './EditAddressModal.module.scss';
 
@@ -31,6 +30,7 @@ class EditAddressModal extends React.Component {
                         </TransparentButton>
                     </li>
                     <li>
+                        <AddressDetail data={customer} />
                         <AddressDetail data={customer} />
                     </li>
                 </ul>

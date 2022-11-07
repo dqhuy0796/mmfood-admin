@@ -7,13 +7,20 @@
     .wrapper {
         width: calc(60% - 6px);
     }
+    .package {
+        margin-top: 12px;
+    }
+    .address,
+    .package {
+        border-radius: 4px;
+    }
 }
 
 // ADDRESS
 
 .address {
-    background-color: #fff;
-    border-radius: 4px;
+    background-color: var(--color-white);
+    border: none;
     p {
         font-size: 1.4rem;
     }
@@ -25,12 +32,12 @@
         .title {
             font-size: 1.6rem;
             font-weight: 500;
-            color: #333;
+            color: var(--color-text);
         }
     }
     .body {
         padding: 8px 16px;
-        color: #333;
+        color: var(--color-text);
         .text {
             margin-bottom: 6px;
             span {
@@ -44,38 +51,43 @@
 
 .package {
     padding: 12px;
-    margin-top: 12px;
-    background-color: #fff;
-    border-radius: 4px;
+    background-color: var(--color-white);
     .title {
         font-size: 14px;
         font-weight: 600;
-        color: #333;
+        color: var(--color-text);
+    }
+    .cart {
+        list-style: none;
+        li {
+            width: 100%;
+        }
+        li + li {
+            padding-top: 16px;
+        }
+    }
+    .delivery {
+        margin-bottom: 24px;
+        .header {
+            padding: 8px 0;
+            font-size: 1.4rem;
+            color: var(--color-text);
+        }
+        .body {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+        }
     }
 }
 
-// DELIVERY SERVICE
-
-.delivery {
-    margin-bottom: 24px;
-    .header {
-        padding: 8px 0;
-        font-size: 1.4rem;
-        color: #333;
-    }
-    .body {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 8px;
-    }
-}
 .delivery-item {
     display: flex;
     padding: 8px;
     gap: 8px;
-    background-color: #f8f8f8;
+    background-color: var(--color-light);
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     overflow: hidden;
     cursor: pointer;
     .check {
@@ -87,19 +99,20 @@
         li {
             font-size: 1.4rem;
             font-weight: 400;
-            color: #333;
+            color: var(--color-text);
             &:first-child {
                 font-size: 1.6rem;
                 font-weight: 500;
-                color: red;
+                color: var(--color-red);
             }
         }
     }
 }
+
 .delivery-item.selected {
-    border: 2px solid green;
+    border-color: var(--color-primary);
     .check {
-        color: green;
+        color: var(--color-primary);
     }
 }
 
@@ -111,15 +124,15 @@
     gap: 16px;
     padding: 8px;
     width: 100%;
-    background-color: #f4f4f4;
+    background-color: var(--color-light);
     border-radius: 6px;
-    border: 1px solid #ddd;
+    border: 1px solid var(--color-border);
     .image {
         flex-shrink: 0;
         width: 20%;
         height: 100%;
         border-radius: 6px;
-        border: 1px solid #ddd;
+        border: 1px solid var(--color-border);
         overflow: hidden;
         .image-link {
             display: block;
@@ -149,7 +162,7 @@
         .name {
             font-size: 1.6rem;
             font-weight: 500;
-            color: #333;
+            color: var(--color-text);
         }
         .description {
             display: flex;

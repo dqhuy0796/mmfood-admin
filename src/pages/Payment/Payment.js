@@ -3,7 +3,8 @@ import React from 'react';
 import styles from './Payment.module.scss';
 import LeftContainer from './PaymentLeftContainer';
 import RightContainer from './PaymentRightContainer';
-import Header from '~/layouts/Header/Header';
+import Header from '~/layouts/Header';
+import Footer from '~/layouts/Footer';
 
 const cb = classNames.bind(styles);
 
@@ -18,6 +19,7 @@ class Payment extends React.Component {
                         <RightContainer />
                     </div>
                 </div>
+                <Footer />
             </>
         );
     }

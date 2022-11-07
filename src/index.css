@@ -2,6 +2,19 @@
 
 @import 'normalize.css';
 
+:root {
+    --color-primary: #0c713d;
+    --color-text: #292929;
+    --color-border: #dddddd;
+    --color-shadow: #757575;
+    --color-red: #db1120;
+    --color-orange: #ff7000;
+    --color-black: #191919;
+    --color-white: #ffffff;
+    --color-dark: #393939;
+    --color-light: #fafafa;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +28,7 @@ html {
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
-    line-height: 1.5;
+    /* line-height: 1.5; */
     text-rendering: optimizeSpeed;
     overflow-y: overlay;
 }

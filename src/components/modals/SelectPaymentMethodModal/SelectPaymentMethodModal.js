@@ -111,7 +111,7 @@ class SelectPaymentMethodModal extends React.Component {
 }
 
 const PaymentMethodItem = (props) => (
-    <div className={cb('methods')}>
+    <div className={cb('method')}>
         <div className={cb('image')}>
             <img src={props.data.imageUrl} alt={props.data.title} />
         </div>

@@ -5,12 +5,14 @@ import Navbar from '~/components/partial/Navbar';
 import HamburgerButton from '~/components/shared/HamburgerButton';
 import LogoFull from '~/components/shared/Logo/LogoFull';
 import RoundButton from '~/components/shared/RoundButton';
+import CartModal from '../../components/modals/CartModal/CartModal';
 import styles from './Header.module.scss';
 
 const cb = classNames.bind(styles);
 
 class Header extends React.Component {
     state = {
+        isModalActive: false,
         isMobileMenuOpening: false,
     };
 
@@ -21,6 +23,13 @@ class Header extends React.Component {
         }));
     };
 
+    handleCollapseModal = () => {
+        this.setState((prevState) => ({
+            ...prevState,
+            isModalActive: !prevState.isModalActive,
+        }));
+    };
+
     render() {
         return (
             <header className={cb('header')}>
@@ -28,7 +37,11 @@ class Header extends React.Component {
                     <HamburgerButton onClick={this.handleCollapseMenu} isCollapsed={this.state.isMobileMenuOpening} />
                     <LogoFull />
                     <Navbar isCollapsed={this.state.isMobileMenuOpening} />
-                    <RoundButton icon={<HiOutlineShoppingBag />} />
+                    <RoundButton icon={<HiOutlineShoppingBag />} onClick={this.handleCollapseModal} />
+                    <CartModal
+                        isModalActive={this.state.isModalActive}
+                        handleCollapseModal={this.handleCollapseModal}
+                    />
                 </div>
             </header>
         );

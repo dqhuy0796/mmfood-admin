@@ -1,0 +1,22 @@
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // background: linear-gradient(115deg, #0c713d, #fff);
+    width: 100vw;
+    height: 100vh;
+    h2 {
+        font-size: 40rem;
+        font-weight: 900;
+        color: var(--color-primary);
+    }
+    p {
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-text);
+    }
+    .back-to-home {
+        margin-top: 40px;
+    }
+}
