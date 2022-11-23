@@ -1,8 +1,9 @@
-import Header from '~/layouts/Header';
-import Footer from '~/layouts/Footer';
 import classNames from 'classnames/bind';
-import TransparentButton from '~/components/shared/TransparentButton';
 import React from 'react';
+import Banner from '~/components/partial/Banner/Banner';
+import TransparentButton from '~/components/shared/TransparentButton';
+import Footer from '~/layouts/Footer';
+import Header from '~/layouts/Header';
 import styles from './Home.module.scss';
 const cb = classNames.bind(styles);
 
@@ -65,11 +66,6 @@ class Home extends React.Component {
         );
     }
 }
-const Banner = (props) => (
-    <div className={cb('img-bg')}>
-        <img src="https://banhcanhghemuoiotxanh.com/wp-content/uploads/2021/06/banner-banh-canh-ghe.jpg" alt="" />
-    </div>
-);
 const ContentSection = (props) => (
     <div className={cb('content-section')}>
         <div className={cb('image')}>
