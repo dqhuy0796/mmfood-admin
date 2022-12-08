@@ -8,15 +8,28 @@ const cb = classNames.bind(styles);
 
 class RightSideModal extends React.Component {
     state = {};
+
+    componentDidMount() {
+        document.body.style.overflow = 'hidden';
+    }
+
+    componentWillUnmount() {
+        document.body.style.overflow = 'unset';
+    }
+
     render() {
         return (
-            <div className={cb('wrapper', this.props.isModalActive && 'active')}>
-                <div className={cb('header')}>
-                    <span>{this.props.title}</span>
-                    <RoundButton icon={<MdClose />} onClick={this.props.handleCollapseModal} />
+            <div className={cb('modal')}>
+                <div className={cb('overlay')}></div>
+                <div className={cb('wrapper')}>
+                    <div className={cb('header')}>
+                        <span>{this.props.title}</span>
+                        <RoundButton onClick={this.props.handleCollapseModal}>
+                            <MdClose />
+                        </RoundButton>
+                    </div>
+                    <div className={cb('body')}>{this.props.children}</div>
                 </div>
-                <ul className={cb('body')}>{this.props.body}</ul>
-                <div className={cb('footer')}>{this.props.footer}</div>
             </div>
         );
     }

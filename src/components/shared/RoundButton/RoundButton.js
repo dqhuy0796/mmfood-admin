@@ -5,33 +5,24 @@ import { Link } from 'react-router-dom';
 
 const cb = classNames.bind(styles);
 
-class RoundButton extends React.Component {
-    // var Comp = 'button';
-
-    // if (this.props.to) {
-    //     btnProps.to = to;
-    //     Comp = Link;
-    // } else if (this.props.href) {
-    //     btnProps.href = href;
-    //     Comp = 'a';
-
-    // const btnProps = [
-    //     onClick,
-    //     ...this.props
-    // ]
-
-    render() {
-        return (
-            <button
-                className={cb('wrapper', this.props.primary && 'primary', this.props.className)}
-                to={this.props.to}
-                href={this.props.href}
-                onClick={this.props.onClick}
-            >
-                {this.props.icon}
-            </button>
-        );
+function RoundButton({ className, children, to, href, onClick, value, ...props }) {
+    const btnProps = { onClick, ...props };
+    let Comp = 'div';
+    if (to) {
+        Comp = Link;
+        btnProps.to = to;
+    } else if (href) {
+        Comp = 'a';
+        btnProps.href = href;
+    } else {
+        Comp = 'button';
     }
+    return (
+        <Comp className={cb('wrapper', className)} {...btnProps}>
+            {children}
+            {value > 0 && <span className={cb('tag')}>{value > 9 ? '9+' : value}</span>}
+        </Comp>
+    );
 }
 
 export default RoundButton;

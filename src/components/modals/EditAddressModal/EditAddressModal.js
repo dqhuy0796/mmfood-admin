@@ -1,89 +1,90 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { MdAddLocation, MdCheckCircle, MdClose, MdOutlineRadioButtonUnchecked } from 'react-icons/md';
-import RoundButton from '~/components/shared/RoundButton';
+import { MdAddLocation, MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
 import TransparentButton from '~/components/shared/TransparentButton';
+import RightSideModal from '../RightSideModal/RightSideModal';
 import styles from './EditAddressModal.module.scss';
 
 const cb = classNames.bind(styles);
 
-const customer = {
-    name: 'Sam Quoc Anh',
-    phone: '0988 999 555',
-    address: 'Tổ 4, phường Tân Thịnh, thành phố Thái Nguyên',
-};
-
 class EditAddressModal extends React.Component {
-    state = {};
+    state = {
+        address: [
+            {
+                id: 1,
+                name: 'Đồng Quốc Huy',
+                phone: '0985 805 096',
+                address: 'Tổ 4, Phường Tân Thịnh, Thành phố Thái Nguyên',
+                default: false,
+            },
+            {
+                id: 2,
+                name: 'Đồng Quốc Huy',
+                phone: '0985 805 096',
+                address: 'Trường ĐH CNTT, Đường z115, Thành phố Thái Nguyên',
+                default: true,
+            },
+            {
+                id: 3,
+                name: 'Đồng Quốc Huy',
+                phone: '0985 805 096',
+                address: 'Thôn 6, xã Trung Môn, huyện Yên Sơn, tỉnh Tuyên Quang',
+                default: false,
+            },
+        ],
+    };
+
+    handleSelectAddress = (id) => {
+        // let selectedAddress = this.state.address.filter((item) => item.id === id)[0];
+        // console.log(selectedAddress);
+    };
+
     render() {
         return (
-            <div className={cb('wrapper', this.props.isModalActive && 'active')}>
-                <div className={cb('header')}>
-                    <span>Địa chỉ nhận hàng</span>
-                    <RoundButton icon={<MdClose />} onClick={this.props.handleCollapseModal} />
-                </div>
-                <ul className={cb('body')}>
-                    <li>
-                        <TransparentButton>
+            <RightSideModal title={'Địa chỉ nhận hàng'} handleCollapseModal={this.props.handleCollapseModal}>
+                <div className={cb('container')}>
+                    <div>
+                        <TransparentButton onClick={() => {}}>
                             <MdAddLocation />
                             <span>Thêm địa chỉ mới</span>
                         </TransparentButton>
-                    </li>
-                    <li>
-                        <AddressDetail data={customer} />
-                        <AddressDetail data={customer} />
-                    </li>
-                </ul>
-                <div className={cb('footer')}></div>
-            </div>
+                    </div>
+                    <ul>
+                        {this.state.address.map((item, index) => (
+                            <li key={index}>
+                                <AddressDetail data={item} handleOnClick={this.handleSelectAddress(item.id)} />
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </RightSideModal>
         );
     }
 }
 
 const AddressDetail = (props) => (
-    <div className={cb('address-detail')}>
+    <div className={cb('address-detail')} onClick={props.handleOnClick}>
         <div className={cb('check')}>
-            <MdCheckCircle />
+            {props.isChecked ? <MdCheckCircle style={{ color: 'var(--color-green)' }} /> : <MdRadioButtonUnchecked />}
         </div>
         <div className={cb('detail')}>
-            <ul className={cb('info')}>
+            <ul>
                 <li>
-                    <p className={cb('title')}>{customer.name}</p>
+                    <p>{props.data.name}</p>
                 </li>
                 <li>
-                    <p className={cb('title')}>{customer.phone}</p>
+                    <p>{props.data.phone}</p>
                 </li>
                 <li>
-                    <p className={cb('title')}>{customer.address}</p>
+                    <p>{props.data.address}</p>
                 </li>
-                <li>
-                    <p className={cb('title')}>Lựa chọn địa chỉ thường dùng</p>
-                    <div className={cb('select-type')}>
-                        <TypeAddressCheck isChecked={true} title={'Văn phòng'} />
-                        <TypeAddressCheck isChecked={false} title={'Nhà riêng'} />
-                    </div>
-                </li>
-                <li>
-                    <p className={cb('title')}>
-                        <span>Mã vùng:</span>
-                        <span>Thái Nguyên - Tp. Thái Nguyên - P. Tân Thịnh</span>
-                    </p>
-                </li>
-                <li>
-                    <div className={cb('default-address')}>
-                        <span>Địa chỉ nhận hàng mặc định</span>
-                        <span>Địa chỉ thanh toán mặc định</span>
-                    </div>
-                </li>
+                {props.data.default && (
+                    <li>
+                        <span className={cb('default-address')}>Địa chỉ nhận hàng mặc định</span>
+                    </li>
+                )}
             </ul>
         </div>
-    </div>
-);
-
-const TypeAddressCheck = (props) => (
-    <div className={cb('type-address', props.isChecked && 'highlight-border')}>
-        <span className={cb('check')}>{props.isChecked ? <MdCheckCircle /> : <MdOutlineRadioButtonUnchecked />}</span>
-        <span className={cb('content')}>{props.title}</span>
     </div>
 );
 

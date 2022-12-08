@@ -3,16 +3,20 @@
 @import 'normalize.css';
 
 :root {
-    --color-primary: #0c713d;
+    --color-primary: #ef093f; /*0c713d*/
     --color-text: #292929;
     --color-border: #dddddd;
-    --color-shadow: #757575;
-    --color-red: #db1120;
-    --color-orange: #ff7000;
+    --color-shadow: #969696;
+    --color-red: #db1120; /*ef093f*/ /*db1120*/
+    --color-orange: #f46200;
+    --color-gold: #fcc201;
+    --color-green: #0c713d;
+    --color-blue: #1870d5;
+    --color-violet: #8800c7;
     --color-black: #191919;
     --color-white: #ffffff;
     --color-dark: #393939;
-    --color-light: #fafafa;
+    --color-light: #f6f6f6;
 }
 
 * {
@@ -58,19 +62,19 @@ html *::-webkit-scrollbar-track {
     font-size: 1.6rem;
     font-weight: 400;
     font-family: 'Montserrat', sans-serif;
-    color: #393939;
+    color: var(--color-shadow);
 }
 ::-moz-placeholder {
     font-size: 1.6rem;
     font-weight: 400;
     font-family: 'Montserrat', sans-serif;
-    color: #393939;
+    color: var(--color-shadow);
 }
 ::-webkit-input-placeholder {
     font-size: 1.6rem;
     font-weight: 400;
     font-family: 'Montserrat', sans-serif;
-    color: #393939;
+    color: var(--color-shadow);
 }
 
 /* Other */

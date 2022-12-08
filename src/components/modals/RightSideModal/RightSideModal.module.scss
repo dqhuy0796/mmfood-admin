@@ -1,53 +1,71 @@
-.wrapper {
-    display: flex;
-    flex-direction: column;
+.modal {
     position: fixed;
-    top: 0;
-    right: -100%;
-    padding: 0 24px;
-    width: 100%;
-    max-width: 500px;
+    inset: 0;
     height: 100vh;
     z-index: 999;
-    background: #fff;
-    box-shadow: 0 0 8px #aaa;
-    overflow: auto;
-    -webkit-transition: ease-out 0.3s;
-    -moz-transition: ease-out 0.3s;
-    -ms-transition: ease-out 0.3s;
-    -o-transition: ease-out 0.3s;
-    transition: ease-out 0.3s;
-    .header {
-        padding: 16px 0;
-        background-color: #fff;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        span {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #333;
-            letter-spacing: 0;
-        }
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background-color: #00000022;
+        -webkit-animation: fade-in ease-out 0.3s;
+        -moz-animation: fade-in ease-out 0.3s;
+        -ms-animation: fade-in ease-out 0.3s;
+        -o-animation: fade-in ease-out 0.3s;
+        animation: fade-in ease-out 0.3s;
     }
-    .body {
-        list-style: none;
-        li {
-            width: 100%;
-            margin-bottom: 16px;
-            p {
-                margin-bottom: 8px;
-                font-size: 1.4rem;
-                color: #333;
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        padding: 0 16px;
+        width: 100%;
+        max-width: 500px;
+        background: var(--color-white);
+        box-shadow: 0 0 8px var(--color-shadow);
+        -webkit-animation: float-right ease-out 0.3s;
+        -moz-animation: float-right ease-out 0.3s;
+        -ms-animation: float-right ease-out 0.3s;
+        -o-animation: float-right ease-out 0.3s;
+        animation: float-right ease-out 0.3s;
+        .header {
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            span {
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--color-text);
+                letter-spacing: 0;
             }
         }
-    }
-    .footer {
-        margin-top: auto;
-        margin-bottom: 40px;
-        width: 100%;
+        .body {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: 0%;
+            height: 100%;
+        }
     }
 }
-.wrapper.active {
-    right: 0;
+
+@keyframes fade-in {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes float-right {
+    0% {
+        right: -100%;
+    }
+    100% {
+        right: 0;
+    }
 }

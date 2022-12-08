@@ -1,0 +1,37 @@
+.wrapper {
+    display: flex;
+    width: 100%;
+    .container {
+        padding: 16px;
+        width: 100%;
+        background-color: #afcbcb;
+        .title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 16px;
+            background-color: var(--color-white);
+            border-radius: 4px;
+            h6 {
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--color-text);
+            }
+        }
+        .content {
+            margin-top: 16px;
+            .header {
+                ul {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                    gap: 8px;
+                    li {
+                        span + span {
+                            margin-left: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+.menu {
+    height: 100vh;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: var(--color-border);
+    .navbar {
+        position: relative;
+        height: 100%;
+        .hamburger-btn {
+            position: absolute;
+            left: calc(100%);
+            top: 0;
+            padding: 8px;
+        }
+        ul {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            width: 240px;
+            height: 100%;
+            overflow: hidden;
+
+            -webkit-transition: ease-out 0.3s;
+            -moz-transition: ease-out 0.3s;
+            -ms-transition: ease-out 0.3s;
+            -o-transition: ease-out 0.3s;
+            transition: ease-out 0.3s;
+            li {
+                height: 64px;
+                -webkit-animation: fade-in ease-out 0.3s;
+                -moz-animation: fade-in ease-out 0.3s;
+                -ms-animation: fade-in ease-out 0.3s;
+                -o-animation: fade-in ease-out 0.3s;
+                animation: fade-in ease-out 0.3s;
+                .menu-item {
+                    width: 100%;
+                    height: 100%;
+                    padding: 8px 16px;
+                    .menu-link {
+                        display: block;
+                        padding: 16px;
+                        width: 100%;
+                        text-decoration: none;
+                        font-size: 1.6rem;
+                        font-weight: 600;
+                        color: var(--color-text);
+                        text-transform: uppercase;
+                        border-radius: 6px;
+                        &:hover {
+                            box-shadow: inset 0 0 0px 2px var(--color-primary);
+                        }
+                    }
+                    .menu-link.actived {
+                        color: var(--color-white);
+                        background-color: var(--color-primary);
+                    }
+                }
+                &:last-child {
+                    margin-top: auto;
+                    margin-bottom: 32px;
+                    .menu-link {
+                        color: var(--color-white);
+                        background-color: var(--color-text);
+                        &:hover {
+                            box-shadow: inset 0 0 0px 2px var(--color-border);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.menu.collapse {
+    ul {
+        width: 0;
+        li {
+            display: none;
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

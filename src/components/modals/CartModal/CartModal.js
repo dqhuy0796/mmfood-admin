@@ -2,10 +2,11 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { MdClose } from 'react-icons/md';
 import CartItem from '~/components/partial/CartItem';
-import PrimaryButton from '~/components/shared/PrimaryButton';
+import RoundedButton from '~/components/shared/RoundedButton';
 import RoundButton from '~/components/shared/RoundButton';
 import config from '~/config';
 import styles from './CartModal.module.scss';
+import RightSideModal from '../RightSideModal/RightSideModal';
 
 const cb = classNames.bind(styles);
 
@@ -34,24 +35,22 @@ class CartModal extends React.Component {
     };
     render() {
         return (
-            <div className={cb('wrapper', this.props.isModalActive && 'active')}>
-                <div className={cb('header')}>
-                    <span>Giỏ hàng</span>
-                    <RoundButton icon={<MdClose />} onClick={this.props.handleCollapseModal} />
+            <RightSideModal title={'Giỏ hàng'} handleCollapseModal={this.props.handleCollapseModal}>
+                <div className={cb('container')}>
+                    <ul className={cb('body')}>
+                        {this.state.cartItems.map((item, index) => (
+                            <li key={index}>
+                                <CartItem data={item} />
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={cb('footer')}>
+                        <RoundedButton type="red" to={config.routes.payment}>
+                            Thanh toán
+                        </RoundedButton>
+                    </div>
                 </div>
-                <ul className={cb('body')}>
-                    {this.state.cartItems.map((item, index) => (
-                        <li key={index}>
-                            <CartItem data={item} />
-                        </li>
-                    ))}
-                </ul>
-                <div className={cb('footer')}>
-                    <PrimaryButton red={true} to={config.routes.payment}>
-                        Thanh toán
-                    </PrimaryButton>
-                </div>
-            </div>
+            </RightSideModal>
         );
     }
 }

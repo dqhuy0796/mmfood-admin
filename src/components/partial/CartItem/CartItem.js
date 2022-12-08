@@ -1,11 +1,26 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './CartItem.module.scss';
+import { BsChevronUp, BsChevronDown } from 'react-icons/bs';
 
 const cb = classNames.bind(styles);
 
 class CartItem extends React.Component {
-    state = {};
+    state = {
+        quantity: 1,
+    };
+    handleOnClickIncreaseQuantity = () => {
+        this.setState((prevState) => ({
+            ...prevState,
+            quantity: prevState.quantity + 1,
+        }));
+    };
+    handleOnClickDecreaseQuantity = () => {
+        this.setState((prevState) => ({
+            ...prevState,
+            quantity: prevState.quantity <= 1 ? 1 : prevState.quantity - 1,
+        }));
+    };
     render() {
         return (
             <div className={cb('cart-item')}>
@@ -28,8 +43,13 @@ class CartItem extends React.Component {
                     </p>
                 </div>
                 <div className={cb('quantity')}>
-                    <span>SL:</span>
-                    <span>1</span>
+                    <span onClick={this.handleOnClickIncreaseQuantity}>
+                        <BsChevronUp />
+                    </span>
+                    <span>{this.state.quantity}</span>
+                    <span onClick={this.handleOnClickDecreaseQuantity}>
+                        <BsChevronDown />
+                    </span>
                 </div>
             </div>
         );

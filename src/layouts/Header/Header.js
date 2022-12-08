@@ -34,14 +34,17 @@ class Header extends React.Component {
         return (
             <header className={cb('header')}>
                 <div className={cb('wrapper')}>
-                    <HamburgerButton onClick={this.handleCollapseMenu} isCollapsed={this.state.isMobileMenuOpening} />
+                    <HamburgerButton
+                        className={cb('hamburger-btn')}
+                        onClick={this.handleCollapseMenu}
+                        isCollapsed={this.state.isMobileMenuOpening}
+                    />
                     <LogoFull />
                     <Navbar isCollapsed={this.state.isMobileMenuOpening} />
-                    <RoundButton icon={<HiOutlineShoppingBag />} onClick={this.handleCollapseModal} />
-                    <CartModal
-                        isModalActive={this.state.isModalActive}
-                        handleCollapseModal={this.handleCollapseModal}
-                    />
+                    <RoundButton onClick={this.handleCollapseModal} value={22}>
+                        <HiOutlineShoppingBag />
+                    </RoundButton>
+                    {this.state.isModalActive && <CartModal handleCollapseModal={this.handleCollapseModal} />}
                 </div>
             </header>
         );

@@ -9,7 +9,14 @@ const routes = {
     login: '/login',
     search: '/search',
     payment: '/payment',
+
     account: '/account',
+
+    dashboard: '/admin/dashboard',
+    customers: '/admin/customers',
+    products: '/admin/products',
+    orders: '/admin/orders',
+    users: '/admin/users',
 };
 
 export default routes;

@@ -7,7 +7,10 @@ const cb = classNames.bind(styles);
 class HamburgerButton extends React.Component {
     render() {
         return (
-            <div className={cb('wrapper', this.props.isCollapsed && 'open')} onClick={this.props.onClick}>
+            <div
+                className={cb('wrapper', this.props.className, this.props.isCollapsed && 'open')}
+                onClick={this.props.onClick}
+            >
                 <span></span>
             </div>
         );

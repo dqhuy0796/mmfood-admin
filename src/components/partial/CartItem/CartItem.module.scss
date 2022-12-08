@@ -1,18 +1,18 @@
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 16px;
     padding: 8px;
+    gap: 8px;
     width: 100%;
-    background-color: #f4f4f4;
-    border-radius: 6px;
-    border: 1px solid #ddd;
+    background-color: var(--color-light);
+    border-radius: 4px;
+    border: 1px solid var(--color-border);
     .image {
         flex-shrink: 0;
         width: 20%;
         height: 100%;
-        border-radius: 6px;
-        border: 1px solid #ddd;
+        border-radius: 4px;
+        border: 1px solid var(--color-border);
         overflow: hidden;
         .image-link {
             display: block;
@@ -34,15 +34,18 @@
         p {
             font-size: 1.4rem;
             font-weight: 400;
-            color: #757575;
+            color: var(--color-shadow);
         }
         p + p {
-            margin-top: 8px;
+            margin-top: 12px;
         }
         .name {
             font-size: 1.6rem;
-            font-weight: 500;
-            color: #333;
+            font-weight: 600;
+            color: var(--color-text);
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
         }
         .size {
             display: flex;
@@ -52,6 +55,7 @@
                 &:last-child {
                     text-transform: capitalize;
                     font-weight: 600;
+                    color: var(--color-text);
                 }
             }
         }
@@ -60,9 +64,12 @@
             flex-wrap: wrap;
             gap: 8px;
             span {
-                color: red;
+                color: var(--color-red);
+                &:first-child {
+                    font-weight: 600;
+                }
                 &:last-child {
-                    color: #757575;
+                    color: var(--color-shadow);
                     text-decoration: line-through;
                 }
             }
@@ -70,19 +77,28 @@
     }
     .quantity {
         display: flex;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 8px;
+        flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0;
         span {
-            font-size: 1.4rem;
-            &:last-child {
-                padding-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            &:nth-child(odd) {
+                cursor: pointer;
+                &:hover {
+                    background-color: var(--color-white);
+                }
+            }
+            &:nth-child(even) {
                 font-weight: 600;
-                color: red;
+                color: var(--color-red);
+                background-color: var(--color-white);
+                border: 1px solid var(--color-border);
+                user-select: none;
             }
         }
     }
-}
-.cart-item + .cart-item {
-    margin-top: 8px;
 }
