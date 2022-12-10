@@ -9,8 +9,23 @@ export const login = async (path, options = {}) => {
     return response.data;
 };
 
-export const getApiData = async (path, options = {}) => {
-    const response = await request.get(path, options);
+export const getApi = async (url, params = {}) => {
+    const response = await request.get(url, params);
+    return response.data;
+};
+
+export const postApi = async (url, params = {}) => {
+    const response = await request.post(url, params);
+    return response.data;
+};
+
+export const putApi = async (url, params = {}) => {
+    const response = await request.put(url, params);
+    return response.data;
+};
+
+export const deleteApi = async (url, params = {}) => {
+    const response = await request.delete(url, params);
     return response.data;
 };
 

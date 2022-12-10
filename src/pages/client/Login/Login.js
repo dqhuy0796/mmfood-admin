@@ -2,8 +2,9 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { BsFacebook, BsGoogle, BsInstagram, BsTwitter } from 'react-icons/bs';
 import { RiEye2Line, RiEyeCloseLine } from 'react-icons/ri';
-import PillButton from '~/components/shared/PillButton';
-import { UserService } from '~/services';
+import Button from '~/components/shared/buttons/Button';
+import TransparentButton from '~/components/shared/buttons/TransparentButton';
+import * as service from '~/services';
 import styles from './Login.module.scss';
 
 const cb = classNames.bind(styles);
@@ -38,7 +39,7 @@ class Login extends React.Component {
     };
 
     handleLogin = async () => {
-        let data = await UserService(this.state.username, this.state.password);
+        let data = await service.UserService(this.state.username, this.state.password);
         // data has been gotten?
         console.log(data);
     };
@@ -97,13 +98,13 @@ class Login extends React.Component {
                         </div>
 
                         <div className={cb('forgot-password')}>
-                            <span>Quên mật khẩu?</span>
+                            <TransparentButton>Quên mật khẩu?</TransparentButton>
                         </div>
 
                         <div className={cb('button')}>
-                            <PillButton type="primary" onClick={this.handleLogin}>
+                            <Button size={'large'} shape={'pill'} color={'primary'} onClick={this.handleLogin}>
                                 <span>Đăng nhập</span>
-                            </PillButton>
+                            </Button>
                         </div>
 
                         <div className={cb('other-method')}>
@@ -121,7 +122,7 @@ class Login extends React.Component {
                         <div className={cb('register')}>
                             <p>
                                 <span>Chưa có tài khoản?</span>
-                                <span className={cb('register-btn')}>Đăng ký ngay</span>
+                                <TransparentButton>Đăng ký ngay</TransparentButton>
                             </p>
                         </div>
                     </div>

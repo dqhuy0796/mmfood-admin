@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdAddLocation, MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
-import TransparentButton from '~/components/shared/TransparentButton';
-import RightSideModal from '../RightSideModal/RightSideModal';
+import TransparentButton from '~/components/shared/buttons/TransparentButton';
+import BaseRightSideModal from '../BaseRightSideModal';
 import styles from './EditAddressModal.module.scss';
 
 const cb = classNames.bind(styles);
@@ -41,15 +41,15 @@ class EditAddressModal extends React.Component {
 
     render() {
         return (
-            <RightSideModal title={'Địa chỉ nhận hàng'} handleCollapseModal={this.props.handleCollapseModal}>
+            <BaseRightSideModal title={'Địa chỉ nhận hàng'} handleCollapseModal={this.props.handleCollapseModal}>
                 <div className={cb('container')}>
-                    <div>
+                    <div className={cb('header')}>
                         <TransparentButton onClick={() => {}}>
                             <MdAddLocation />
                             <span>Thêm địa chỉ mới</span>
                         </TransparentButton>
                     </div>
-                    <ul>
+                    <ul className={cb('body')}>
                         {this.state.address.map((item, index) => (
                             <li key={index}>
                                 <AddressDetail data={item} handleOnClick={this.handleSelectAddress(item.id)} />
@@ -57,7 +57,7 @@ class EditAddressModal extends React.Component {
                         ))}
                     </ul>
                 </div>
-            </RightSideModal>
+            </BaseRightSideModal>
         );
     }
 }

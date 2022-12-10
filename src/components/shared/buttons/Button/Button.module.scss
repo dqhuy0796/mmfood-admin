@@ -3,18 +3,16 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 16px;
+    padding: 8px;
     width: 100%;
     min-width: 60px;
-    // height: 48px;
-    font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
     font-family: 'Montserrat', sans-serif;
-    border-radius: 4px;
     box-shadow: none;
     outline: none;
     border: none;
+    border-radius: 4px;
     transition: ease-out 0.3s;
     animation: Slide linear 2s infinite;
     overflow: hidden;
@@ -34,6 +32,27 @@
         animation: Slide linear 5s infinite;
     }
 }
+.wrapper.tiny {
+    height: 32px;
+    font-size: 1.2rem;
+}
+.wrapper.medium {
+    height: 40px;
+    font-size: 1.4rem;
+}
+.wrapper.large {
+    height: 48px;
+    font-size: 1.6rem;
+}
+.wrapper.rect {
+    border-radius: 0;
+}
+.wrapper.rounded {
+    border-radius: 6px;
+}
+.wrapper.pill {
+    border-radius: 999px;
+}
 .wrapper.white {
     color: var(--color-text);
     background-color: var(--color-white);
@@ -47,21 +66,9 @@
     color: var(--color-white);
     background-color: var(--color-primary);
 }
-.wrapper.orange {
-    color: var(--color-white);
-    background-color: var(--color-orange);
-}
 .wrapper.red {
     color: var(--color-white);
     background-color: var(--color-red);
-}
-.wrapper.green {
-    color: var(--color-white);
-    background-color: var(--color-green);
-}
-.wrapper.blue {
-    color: var(--color-white);
-    background-color: var(--color-blue);
 }
 
 @keyframes Slide {

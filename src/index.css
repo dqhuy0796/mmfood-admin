@@ -3,7 +3,7 @@
 @import 'normalize.css';
 
 :root {
-    --color-primary: #ef093f; /*0c713d*/
+    --color-primary: #0c713d; /*ef093f*/
     --color-text: #292929;
     --color-border: #dddddd;
     --color-shadow: #969696;

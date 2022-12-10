@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import RoundedButton from '~/components/shared/RoundedButton';
+import Button from '~/components/shared/buttons/Button';
 import styles from './ProductItem.module.scss';
 
 const cb = classNames.bind(styles);
@@ -38,9 +38,9 @@ class ProductItem extends React.Component {
                 </div>
                 <div className={cb('overlay')}>
                     <div>
-                        <RoundedButton type="orange">
+                        <Button size={'large'} shape={'pill'} color={'red'}>
                             <span>Đặt món</span>
-                        </RoundedButton>
+                        </Button>
                     </div>
                 </div>
             </Link>

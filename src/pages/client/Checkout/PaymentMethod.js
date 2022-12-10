@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
 import SelectPaymentMethodModal from '~/components/modals/SelectPaymentMethodModal';
-import TransparentButton from '~/components/shared/TransparentButton';
+import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import styles from './PaymentMethod.module.scss';
 
 const cb = classNames.bind(styles);
@@ -56,9 +56,7 @@ class PaymentMethod extends React.Component {
         return (
             <div className={cb('payment')}>
                 <div className={cb('header')}>
-                    <p className={cb('title')}>
-                        <span>Chọn phương thức thanh toán</span>
-                    </p>
+                    <p className={cb('title')}>Chọn phương thức thanh toán</p>
 
                     <TransparentButton onClick={this.handleCollapseModal}>
                         <span>Xem tất cả</span>

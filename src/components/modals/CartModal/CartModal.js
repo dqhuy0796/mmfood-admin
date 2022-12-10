@@ -1,12 +1,10 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { MdClose } from 'react-icons/md';
 import CartItem from '~/components/partial/CartItem';
-import RoundedButton from '~/components/shared/RoundedButton';
-import RoundButton from '~/components/shared/RoundButton';
+import Button from '~/components/shared/buttons/Button';
 import config from '~/config';
+import BaseRightSideModal from '../BaseRightSideModal';
 import styles from './CartModal.module.scss';
-import RightSideModal from '../RightSideModal/RightSideModal';
 
 const cb = classNames.bind(styles);
 
@@ -35,7 +33,7 @@ class CartModal extends React.Component {
     };
     render() {
         return (
-            <RightSideModal title={'Giỏ hàng'} handleCollapseModal={this.props.handleCollapseModal}>
+            <BaseRightSideModal title={'Giỏ hàng'} handleCollapseModal={this.props.handleCollapseModal}>
                 <div className={cb('container')}>
                     <ul className={cb('body')}>
                         {this.state.cartItems.map((item, index) => (
@@ -45,12 +43,12 @@ class CartModal extends React.Component {
                         ))}
                     </ul>
                     <div className={cb('footer')}>
-                        <RoundedButton type="red" to={config.routes.payment}>
+                        <Button size={'large'} shape={'pill'} color={'red'} to={config.routes.payment}>
                             Thanh toán
-                        </RoundedButton>
+                        </Button>
                     </div>
                 </div>
-            </RightSideModal>
+            </BaseRightSideModal>
         );
     }
 }

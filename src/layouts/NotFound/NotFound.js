@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import RoundedButton from '~/components/shared/RoundedButton';
+import Button from '~/components/shared/buttons/Button';
 import config from '~/config';
 import styles from './NotFound.module.scss';
 
@@ -15,9 +15,9 @@ class NotFound extends React.Component {
                 <p>Bạn vừa tìm ra 1 chiều không gian mới</p>
                 <p>Rất tiếc trang web của chúng tôi chưa hỗ trợ chiều không gian này</p>
                 <div className={cb('back-to-home')}>
-                    <RoundedButton to={config.routes.home} primary>
+                    <Button size={'large'} shape={'pill'} color={'white'} to={config.routes.home}>
                         Trở về trang chủ
-                    </RoundedButton>
+                    </Button>
                 </div>
             </div>
         );

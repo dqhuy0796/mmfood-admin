@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import RoundedButton from '~/components/shared/RoundedButton';
+import Button from '~/components/shared/buttons/Button';
 import styles from './PaymentDetail.module.scss';
 
 const cb = classNames.bind(styles);
@@ -17,9 +17,9 @@ class PaymentDetail extends React.Component {
                             <input placeholder="Nhập mã giảm giá..." />
                         </div>
                         <div className={cb('voucher-btn')}>
-                            <RoundedButton type="green">
+                            <Button size={'tiny'} color={'primary'}>
                                 <span>Áp dụng</span>
-                            </RoundedButton>
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -46,9 +46,9 @@ class PaymentDetail extends React.Component {
                             </span>
                         </p>
                     </div>
-                    <RoundedButton type="red">
+                    <Button size={'large'} shape={'pill'} color={'red'}>
                         <span>Đặt hàng</span>
-                    </RoundedButton>
+                    </Button>
                 </div>
             </div>
         );

@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { BiUser } from 'react-icons/bi';
 import { FiSearch } from 'react-icons/fi';
-import RoundButton from '~/components/shared/RoundButton';
+import IconButton from '~/components/shared/buttons/IconButton';
 import styles from './Navbar.module.scss';
 import NavbarItem from './NavbarItem';
 import config from '~/config';
@@ -30,7 +30,7 @@ class Navbar extends React.Component {
                             <NavbarItem path={item.path} title={item.title} />
                         </li>
                     ))}
-                    {/* <RoundButton icon={<BiUser />} /> thay đổi thứ tự của nút này */}
+                    {/* <IconButton icon={<BiUser />} /> thay đổi thứ tự của nút này */}
                 </ul>
             </div>
         );

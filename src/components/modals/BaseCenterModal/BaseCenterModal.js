@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { MdClose } from 'react-icons/md';
-import RoundButton from '~/components/shared/RoundButton';
-import styles from './RightSideModal.module.scss';
+import IconButton from '~/components/shared/buttons/IconButton';
+import styles from './BaseCenterModal.module.scss';
 
 const cb = classNames.bind(styles);
 
-class RightSideModal extends React.Component {
+class BaseCenterModal extends React.Component {
     state = {};
 
     componentDidMount() {
@@ -14,7 +14,7 @@ class RightSideModal extends React.Component {
     }
 
     componentWillUnmount() {
-        document.body.style.overflow = 'unset';
+        document.body.style.overflow = 'overlay';
     }
 
     render() {
@@ -24,9 +24,9 @@ class RightSideModal extends React.Component {
                 <div className={cb('wrapper')}>
                     <div className={cb('header')}>
                         <span>{this.props.title}</span>
-                        <RoundButton onClick={this.props.handleCollapseModal}>
+                        <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleCollapseModal}>
                             <MdClose />
-                        </RoundButton>
+                        </IconButton>
                     </div>
                     <div className={cb('body')}>{this.props.children}</div>
                 </div>
@@ -35,4 +35,4 @@ class RightSideModal extends React.Component {
     }
 }
 
-export default RightSideModal;
+export default BaseCenterModal;

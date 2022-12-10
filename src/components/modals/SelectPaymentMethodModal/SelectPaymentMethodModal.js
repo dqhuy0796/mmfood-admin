@@ -1,9 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
 import { BsChevronRight } from 'react-icons/bs';
-import { MdClose } from 'react-icons/md';
-import RoundButton from '~/components/shared/RoundButton';
-import RightSideModal from '../RightSideModal/RightSideModal';
+import BaseRightSideModal from '../BaseRightSideModal';
 import styles from './SelectPaymentMethodModal.module.scss';
 
 const cb = classNames.bind(styles);
@@ -108,7 +106,7 @@ class SelectPaymentMethodModal extends React.Component {
     };
     render() {
         return (
-            <RightSideModal title={'Chọn phương thức thanh toán'} handleCollapseModal={this.props.handleCollapseModal}>
+            <BaseRightSideModal title={'Phương thức thanh toán'} handleCollapseModal={this.props.handleCollapseModal}>
                 <div className={cb('container')}>
                     <ul className={cb('body')}>
                         <li>
@@ -126,7 +124,7 @@ class SelectPaymentMethodModal extends React.Component {
                         </li>
                     </ul>
                 </div>
-            </RightSideModal>
+            </BaseRightSideModal>
         );
     }
 }

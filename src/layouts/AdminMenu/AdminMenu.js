@@ -5,7 +5,7 @@ import { MdOutlineFastfood } from 'react-icons/md';
 import { RiUserSettingsLine, RiUserStarLine, RiLogoutBoxRLine } from 'react-icons/ri';
 import { TfiDashboard } from 'react-icons/tfi';
 import { NavLink } from 'react-router-dom';
-import HamburgerButton from '~/components/shared/HamburgerButton';
+import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
 import config from '~/config';
 import LogoFull from '~/components/shared/Logo/LogoFull';
 import styles from './AdminMenu.module.scss';

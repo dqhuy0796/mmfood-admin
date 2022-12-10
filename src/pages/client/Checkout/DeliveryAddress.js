@@ -1,10 +1,7 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
-import { Link } from 'react-router-dom';
 import EditAddressModal from '~/components/modals/EditAddressModal';
-import CartItem from '~/components/partial/CartItem';
-import TransparentButton from '~/components/shared/TransparentButton';
+import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import styles from './DeliveryAddress.module.scss';
 
 const cb = classNames.bind(styles);
