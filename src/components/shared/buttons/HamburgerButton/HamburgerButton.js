@@ -8,7 +8,7 @@ class HamburgerButton extends React.Component {
     render() {
         return (
             <div
-                className={cb('wrapper', this.props.className, this.props.isCollapsed && 'open')}
+                className={cb('wrapper', this.props.className, this.props.color, this.props.isCollapsed && 'open')}
                 onClick={this.props.onClick}
             >
                 <span></span>

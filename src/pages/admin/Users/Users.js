@@ -1,14 +1,16 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import styles from './Users.module.scss';
-import AdminMenu from '~/layouts/AdminMenu/AdminMenu';
-import Button from '~/components/shared/buttons/Button';
-import RealtimeClock from '~/components/partial/RealtimeClock';
-import { BiPlus, BiUpload, BiPrinter, BiSpreadsheet, BiEditAlt } from 'react-icons/bi';
-import { VscFilePdf } from 'react-icons/vsc';
+import { BiEditAlt, BiPlus, BiPrinter, BiSpreadsheet, BiUpload } from 'react-icons/bi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
+import { VscFilePdf } from 'react-icons/vsc';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UserModal from '~/components/modals/UserModal';
-
+import RealtimeClock from '~/components/partial/RealtimeClock';
+import Button from '~/components/shared/buttons/Button';
+import AdminMenu from '~/layouts/AdminMenu/AdminMenu';
+import styles from './Users.module.scss';
+import _ from 'lodash';
 import * as service from '~/services';
 
 const cb = classNames.bind(styles);
@@ -18,59 +20,114 @@ class Users extends React.Component {
         isModalActive: false,
         currentUser: {},
         dataUsers: [],
-        menu: [
-            {
-                id: 1,
-                icon: <BiPlus />,
-                title: 'Thêm mới',
-            },
-            {
-                id: 2,
-                icon: <BiUpload />,
-                title: 'Tải lên từ file',
-            },
-            {
-                id: 3,
-                icon: <BiPrinter />,
-                title: 'In dữ liệu',
-            },
-            {
-                id: 4,
-                icon: <BiSpreadsheet />,
-                title: 'Xuất EXCEL',
-            },
-            {
-                id: 5,
-                icon: <VscFilePdf />,
-                title: 'Xuất PDF',
-            },
-            {
-                id: 6,
-                icon: <RiDeleteBin5Line />,
-                title: 'Xóa tất cả',
-            },
-        ],
+        menu: [],
     };
 
     componentDidMount() {
-        // this.handleGetUsers();
+        this.handleGetUsers();
+        this.handleMapOptionMenu();
     }
-
-    handleGetUsers = async () => {
-        let apiData = await service.GetUsers();
+    //init
+    handleMapOptionMenu = () => {
         this.setState((prevState) => ({
             ...prevState,
-            dataUsers: apiData.users,
+            menu: [
+                {
+                    id: 1,
+                    icon: <BiPlus />,
+                    title: 'Thêm mới',
+                    function: this.handleCollapseModal,
+                },
+                {
+                    id: 2,
+                    icon: <BiUpload />,
+                    title: 'Tải lên từ file',
+                },
+                {
+                    id: 3,
+                    icon: <BiPrinter />,
+                    title: 'In dữ liệu',
+                },
+                {
+                    id: 4,
+                    icon: <BiSpreadsheet />,
+                    title: 'Xuất EXCEL',
+                },
+                {
+                    id: 5,
+                    icon: <VscFilePdf />,
+                    title: 'Xuất PDF',
+                },
+                {
+                    id: 6,
+                    icon: <RiDeleteBin5Line />,
+                    title: 'Xóa tất cả',
+                },
+            ],
         }));
     };
-
+    // event handle
     handleCollapseModal = () => {
         this.setState((prevState) => ({
             ...prevState,
             isModalActive: !prevState.isModalActive,
+            currentUser: {},
         }));
     };
-
+    handleCollapseModalWithData = (data) => {
+        this.setState((prevState) => ({
+            ...prevState,
+            isModalActive: !prevState.isModalActive,
+            currentUser: data,
+        }));
+    };
+    // process api
+    handleGetUsers = async () => {
+        try {
+            let apiData = await service.GetUsers();
+            this.setState((prevState) => ({
+                ...prevState,
+                dataUsers: apiData.users,
+            }));
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    handleCreateUser = async (data) => {
+        try {
+            let res = await service.CreateUser(data);
+            if (res && res.code === 0) {
+                this.handleCollapseModal();
+                this.handleGetUsers();
+                toast.success('Tạo mới tài khoản thành công!');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    handleDeleteUser = async (id) => {
+        try {
+            let res = await service.DeleteUser(id);
+            if (res && res.code === 0) {
+                this.handleGetUsers();
+                toast.success('Xóa tài khoản thành công!');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    handleUpdateUser = async (data) => {
+        try {
+            let res = await service.UpdateUser(data);
+            if (res && res.code === 0) {
+                this.handleCollapseModal();
+                this.handleGetUsers();
+                toast.success('Cập nhật thông tin thành công!');
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
     render() {
         return (
             <div className={cb('wrapper')}>
@@ -84,12 +141,7 @@ class Users extends React.Component {
                         <ul className={cb('header')}>
                             {this.state.menu.map((item, index) => (
                                 <li key={index}>
-                                    <Button
-                                        size={'tiny'}
-                                        shape={'pill'}
-                                        color={'white'}
-                                        onClick={this.handleCollapseModal}
-                                    >
+                                    <Button size={'tiny'} color={'white'} onClick={item.function}>
                                         <span>{item.icon}</span>
                                         <span>{item.title}</span>
                                     </Button>
@@ -97,15 +149,39 @@ class Users extends React.Component {
                             ))}
                         </ul>
                         <div className={cb('body')}>
-                            <DataTable data={this.state.dataUsers} />
+                            <DataTable
+                                data={this.state.dataUsers}
+                                handleDeleteUser={this.handleDeleteUser}
+                                handleCollapseModalWithData={this.handleCollapseModalWithData}
+                            />
                         </div>
                         <div className={cb('footer')}>
                             {this.state.isModalActive && (
                                 <UserModal
-                                    title={'Thêm tài khoản mới'}
+                                    title={
+                                        _.isEmpty(this.state.currentUser)
+                                            ? 'Thêm tài khoản mới'
+                                            : 'Sửa thông tin tài khoản'
+                                    }
+                                    data={this.state.currentUser}
+                                    handleCreateUser={this.handleCreateUser}
+                                    handleUpdateUser={this.handleUpdateUser}
                                     handleCollapseModal={this.handleCollapseModal}
                                 />
                             )}
+
+                            <ToastContainer
+                                position="top-right"
+                                autoClose={5000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick={false}
+                                rtl={false}
+                                pauseOnFocusLoss
+                                draggable
+                                pauseOnHover
+                                theme="light"
+                            />
                         </div>
                     </div>
                 </div>
@@ -121,7 +197,14 @@ const DataTable = (props) => (
         <DataTableHead />
         <tbody>
             {props.data.length > 0 ? (
-                props.data.map((item, index) => <DataTableRow key={index} data={item} />)
+                props.data.map((item, index) => (
+                    <DataTableRow
+                        key={index}
+                        data={item}
+                        handleDeleteUser={props.handleDeleteUser}
+                        handleCollapseModalWithData={props.handleCollapseModalWithData}
+                    />
+                ))
             ) : (
                 <tr>
                     <td colSpan={10}>Không có người dùng nào</td>
@@ -158,8 +241,17 @@ const DataTableRow = (props) => (
         <td>{props.data.id}</td>
         <td>{props.data.name}</td>
         <td>{props.data.birth}</td>
-        <td className={cb('avatar')}>
-            <img src={props.data.avatarUrl} alt={props.data.name} />
+        <td>
+            <div className={cb('avatar')}>
+                {props.data.avatarUrl && props.data.avatarUrl.length > 10 ? (
+                    <img src={props.data.avatarUrl} alt={props.data.name} />
+                ) : (
+                    <img
+                        src={'https://i.pinimg.com/originals/f1/0f/f7/f10ff70a7155e5ab666bcdd1b45b726d.jpg'}
+                        alt={props.data.name}
+                    />
+                )}
+            </div>
         </td>
         <td>{props.data.phone}</td>
         <td>{props.data.email}</td>
@@ -167,10 +259,10 @@ const DataTableRow = (props) => (
         <td>{props.data.role}</td>
         <td>
             <div className={cb('action')}>
-                <button>
+                <button onClick={() => props.handleCollapseModalWithData(props.data)}>
                     <BiEditAlt />
                 </button>
-                <button>
+                <button onClick={() => props.handleDeleteUser(props.data.id)}>
                     <RiDeleteBin5Line />
                 </button>
             </div>

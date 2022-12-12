@@ -2,12 +2,11 @@ import * as httpsRequest from '~/utils/httpsRequest';
 
 export const GetUsers = async () => {
     try {
-        const query = 'user/get';
-        const data = await httpsRequest.getApi(query, {
-            params: {
-                id: 'all',
-            },
-        });
+        const path = 'user/get';
+        const payload = {
+            id: 'all',
+        };
+        const data = await httpsRequest.getApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);
@@ -16,12 +15,11 @@ export const GetUsers = async () => {
 
 export const GetUserById = async (id) => {
     try {
-        const query = 'user/get';
-        const data = await httpsRequest.getApi(query, {
-            params: {
-                id: id,
-            },
-        });
+        const path = 'user/get';
+        const payload = {
+            id: id,
+        };
+        const data = await httpsRequest.getApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);
@@ -30,19 +28,18 @@ export const GetUserById = async (id) => {
 
 export const CreateUser = async (user) => {
     try {
-        const query = 'user/create';
-        const data = await httpsRequest.postApi(query, {
-            params: {
-                password: user.password,
-                name: user.name,
-                birth: user.birth,
-                avatarUrl: user.avatarUrl,
-                phone: user.phone,
-                email: user.email,
-                address: user.address,
-                role: user.role,
-            },
-        });
+        const path = 'user/create';
+        const payload = {
+            password: user.password,
+            name: user.name,
+            birth: user.birth,
+            avatarUrl: user.avatarUrl,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
+            role: user.role,
+        };
+        const data = await httpsRequest.postApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);
@@ -51,19 +48,18 @@ export const CreateUser = async (user) => {
 
 export const UpdateUser = async (user) => {
     try {
-        const query = 'user/update';
-        const data = await httpsRequest.putApi(query, {
-            params: {
-                password: user.password,
-                name: user.name,
-                birth: user.birth,
-                avatarUrl: user.avatarUrl,
-                phone: user.phone,
-                email: user.email,
-                address: user.address,
-                role: user.role,
-            },
-        });
+        const path = 'user/update';
+        const payload = {
+            id: user.id,
+            name: user.name,
+            birth: user.birth,
+            avatarUrl: user.avatarUrl,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
+            role: user.role,
+        };
+        const data = await httpsRequest.putApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);
@@ -72,12 +68,11 @@ export const UpdateUser = async (user) => {
 
 export const DeleteUser = async (userId) => {
     try {
-        const query = 'user/delete';
-        const data = await httpsRequest.deleteApi(query, {
-            params: {
-                id: userId,
-            },
-        });
+        const path = 'user/delete';
+        const payload = {
+            id: userId,
+        };
+        const data = await httpsRequest.deleteApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);

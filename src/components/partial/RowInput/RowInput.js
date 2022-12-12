@@ -1,17 +1,24 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { RiEye2Line, RiEyeCloseLine } from 'react-icons/ri';
+import { RiEye2Line, RiEyeCloseLine, RiUploadCloud2Line } from 'react-icons/ri';
 import styles from './RowInput.module.scss';
+import Button from '~/components/shared/buttons/Button';
 
 const cb = classNames.bind(styles);
 
 class RowInput extends React.Component {
+    constructor(props) {
+        super(props);
+        this.imageUrlRef = React.createRef();
+    }
+
     state = {
+        value: '',
         option: {},
     };
 
     componentDidMount() {
-        this.handleFormatRowInput(this.props.data.type);
+        this.handleFormat(this.props.option.type);
     }
 
     handleShowPassword = () => {
@@ -24,13 +31,13 @@ class RowInput extends React.Component {
         }));
     };
 
-    handleFormatRowInput = (type) => {
+    handleFormat = (type) => {
         switch (type) {
             case 'tel':
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
+                        ...this.props.option,
                         title: 'Số điện thoại phải theo định dạng Việt Nam 0xxx xxx xxx (ví dụ: 0912 345 678).',
                         placeholder: '09xx xxx xxx',
                         pattern: '0+[0-9]{9}',
@@ -41,7 +48,7 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
+                        ...this.props.option,
                         title: 'Email phải theo đúng định dạng (ví dụ: example@email.com)',
                     },
                 }));
@@ -50,7 +57,7 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
+                        ...this.props.option,
                         title: 'Mật khẩu phải dài hơn 8 ký tự, bao gồm chữ thường, chữ hoa và chữ số.',
                         pattern: '(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
                     },
@@ -60,7 +67,7 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
+                        ...this.props.option,
                         title: 'Nhập địa chỉ phù hợp với đơn vị hành chính.',
                     },
                 }));
@@ -69,10 +76,9 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
-                        type: 'file',
-                        accept: `${this.props.data.type}/*`,
-                        title: `Nhập đúng định dạng ${this.props.data.type}.`,
+                        ...this.props.option,
+                        type: 'text',
+                        title: 'Dán vào url của ảnh.',
                     },
                 }));
                 break;
@@ -80,8 +86,8 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
-                        title: 'Chọn định dạng ngày tháng năm.',
+                        ...this.props.option,
+                        title: 'Chọn ngày tháng năm theo định dạng.',
                     },
                 }));
                 break;
@@ -89,48 +95,72 @@ class RowInput extends React.Component {
                 this.setState((prevState) => ({
                     ...prevState,
                     option: {
-                        ...this.props.data,
-                        title: `Nhập vào định dạng ${this.props.data.label}`,
+                        ...this.props.option,
+                        title: `Nhập vào định dạng ${this.props.option.label}`,
                     },
                 }));
                 break;
         }
     };
 
+    handlePreviewImage = () => {
+        if (this.props.option.type === 'image') {
+            this.setState((prevState) => ({
+                ...prevState,
+                value: this.imageUrlRef.value,
+            }));
+            console.log('image', this.state.option.value);
+        }
+    };
+
     render() {
         return (
-            <>
-                {this.props.data.type === 'address' ? (
-                    <div className={cb('address')}>
-                        {['Xã/Phường', 'Huyện/Quận', 'Tỉnh/Thành phố'].map((item, index) => (
-                            <div key={index} className={cb('row')}>
-                                <p className={cb('label')}>
-                                    <span>{item}</span>
-                                    {this.state.option.required && <span className={cb('required')}>*</span>}
-                                </p>
-                                <div className={cb('input')}>
-                                    <input {...this.state.option} />
-                                </div>
+            <div className={cb('row')}>
+                <p className={cb('label')}>
+                    {this.state.option.label}
+                    {this.state.option.required && <span className={cb('required')}>*</span>}
+                </p>
+                <div className={cb('input')}>
+                    {this.props.option.type === 'image' ? (
+                        <div className={cb('image-upload')}>
+                            <div className={cb('image')}>
+                                {this.props.value ? (
+                                    <img src={this.props.value} alt={this.state.option.label} />
+                                ) : (
+                                    <RiUploadCloud2Line className={cb('icon')} />
+                                )}
                             </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className={cb('row')}>
-                        <p className={cb('label')}>
-                            {this.state.option.label}
-                            {this.state.option.required && <span className={cb('required')}>*</span>}
-                        </p>
-                        <div className={cb('input')}>
-                            <input {...this.state.option} />
-                            {this.props.data.type === 'password' && (
-                                <span className={cb('eye-btn')} onClick={this.handleShowPassword}>
-                                    {this.state.option.type === 'password' ? <RiEyeCloseLine /> : <RiEye2Line />}
-                                </span>
-                            )}
+                            <div className={cb('upload')}>
+                                <textarea
+                                    {...this.state.option}
+                                    ref={this.imageUrlRef}
+                                    value={this.props.value}
+                                    placeholder={'Dán URL hình ảnh...'}
+                                    onChange={this.props.onChange}
+                                    onFocus={this.props.onChange}
+                                    onBlur={this.props.onChange}
+                                />
+                                <Button size={'tiny'} color={'primary'}>
+                                    Load
+                                </Button>
+                            </div>
                         </div>
-                    </div>
-                )}
-            </>
+                    ) : (
+                        <input
+                            {...this.state.option}
+                            value={this.props.value}
+                            onChange={this.props.onChange}
+                            onFocus={this.props.onChange}
+                            onBlur={this.props.onChange}
+                        />
+                    )}
+                    {this.props.option.type === 'password' && (
+                        <span className={cb('eye-btn')} onClick={this.handleShowPassword}>
+                            {this.state.option.type === 'password' ? <RiEyeCloseLine /> : <RiEye2Line />}
+                        </span>
+                    )}
+                </div>
+            </div>
         );
     }
 }

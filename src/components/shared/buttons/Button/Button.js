@@ -37,13 +37,18 @@ class Button extends React.Component {
                 },
             }));
         }
+        if (this.props.onClick) {
+            this.setState((prevState) => ({
+                ...prevState,
+                options: {
+                    ...prevState.options,
+                    onClick: this.props.onClick,
+                },
+            }));
+        }
         this.setState((prevState) => ({
             ...prevState,
             className: ['wrapper', this.props.className, this.props.size, this.props.shape, this.props.color],
-            options: {
-                ...prevState.options,
-                onClick: this.props.onClick,
-            },
         }));
     };
 

@@ -12,6 +12,15 @@
     -o-transition: ease-out 0.3s;
     transition: ease-out 0.3s;
 }
+.wrapper.white {
+    span {
+        background-color: var(--color-white);
+        &::before,
+        &::after {
+            background-color: var(--color-white);
+        }
+    }
+}
 .wrapper span {
     display: block;
     position: relative;

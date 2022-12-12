@@ -3,7 +3,8 @@
 @import 'normalize.css';
 
 :root {
-    --color-primary: #0c713d; /*ef093f*/
+    --color-primary: #de7934;
+    --color-secondary: #ffaa55;
     --color-text: #292929;
     --color-border: #dddddd;
     --color-shadow: #969696;
@@ -17,6 +18,22 @@
     --color-white: #ffffff;
     --color-dark: #393939;
     --color-light: #f6f6f6;
+    --color-background: #eaf0f8;
+
+    --gradient-primary: linear-gradient(150deg, var(--color-secondary), var(--color-primary));
+    --gradient-brown: linear-gradient(45deg, #c68e39, #fbfbbb);
+    --gradient-pink: linear-gradient(45deg, #fde8e7, #fff5f4);
+
+    --toastify-color-light: #ffffff !important;
+    --toastify-color-dark: #191919 !important;
+    --toastify-color-info: #3498db !important;
+    --toastify-color-success: #0b990f !important;
+    --toastify-color-warning: #fcc201 !important;
+    --toastify-color-error: #ef093f !important;
+    --toastify-toast-width: 400px !important;
+    --toastify-text-color-light: #595959 !important;
+    --toastify-text-color-dark: #ffffff !important;
+    --toastify-font-family: 'Montserrat', sans-serif !important;
 }
 
 * {

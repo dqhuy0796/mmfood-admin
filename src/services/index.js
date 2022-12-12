@@ -1,2 +1,2 @@
 export { UserService } from './userService';
-export { GetUsers } from './adminService';
+export { GetUsers, GetUserById, CreateUser, UpdateUser, DeleteUser } from './adminService';

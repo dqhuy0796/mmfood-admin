@@ -39,6 +39,7 @@ class AdminMenu extends React.Component {
                     <ul>
                         <li>
                             <HamburgerButton
+                                color={'white'}
                                 onClick={this.handleCollapseMenu}
                                 isCollapsed={this.state.isMobileMenuOpening}
                             />
