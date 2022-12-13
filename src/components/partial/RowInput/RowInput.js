@@ -140,9 +140,9 @@ class RowInput extends React.Component {
                                     onFocus={this.props.onChange}
                                     onBlur={this.props.onChange}
                                 />
-                                <Button size={'tiny'} color={'primary'}>
+                                {/* <Button size={'tiny'} color={'primary'}>
                                     Load
-                                </Button>
+                                </Button> */}
                             </div>
                         </div>
                     ) : (

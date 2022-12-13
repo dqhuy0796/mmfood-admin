@@ -24,7 +24,7 @@ class BaseCenterModal extends React.Component {
                 <div className={cb('wrapper')}>
                     <div className={cb('header')}>
                         <span>{this.props.title}</span>
-                        <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleCollapseModal}>
+                        <IconButton size={'tiny'} color={'transparent'} onClick={this.props.handleActiveModal}>
                             <MdClose />
                         </IconButton>
                     </div>

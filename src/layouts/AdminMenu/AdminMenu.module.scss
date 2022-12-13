@@ -3,7 +3,10 @@
     border-right-style: solid;
     border-right-width: 1px;
     border-right-color: var(--color-border);
-    background: var(--gradient-primary);
+    background: var(--gradient-primary),
+        url(https://res.cloudinary.com/dqhuy/image/upload/v1667639893/MMFood/Food/banh-canh-dacbiet_nkjhsy.jpg);
+    background-size: cover;
+    background-position: center;
     .navbar {
         position: relative;
         height: 100%;
@@ -29,7 +32,7 @@
                     margin-bottom: 32px;
                     .menu-link {
                         color: var(--color-white);
-                        background-color: var(--color-text);
+                        background-color: #393939cc;
                         &:hover {
                             background-color: var(--color-hover);
                         }
@@ -91,5 +94,5 @@
     }
 }
 .menu-link.actived {
-    background-color: var(--color-hover);
+    box-shadow: 0 0 4px 1px var(--color-white);
 }

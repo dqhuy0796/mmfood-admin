@@ -165,7 +165,7 @@ class UserModal extends React.Component {
 
     render() {
         return (
-            <BaseCenterModal title={this.props.title} handleCollapseModal={this.props.handleCollapseModal}>
+            <BaseCenterModal title={this.props.title} handleActiveModal={this.props.handleActiveModal}>
                 <form className={cb('container')} onSubmit={this.handleSubmit}>
                     {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
                     <ul className={cb('body')}>
@@ -187,7 +187,7 @@ class UserModal extends React.Component {
                             </Button>
                         </label>
 
-                        <Button size={'large'} color={'white'} onClick={this.props.handleCollapseModal}>
+                        <Button size={'large'} color={'white'} onClick={this.props.handleActiveModal}>
                             Hủy
                         </Button>
                     </div>

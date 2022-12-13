@@ -3,12 +3,13 @@
 @import 'normalize.css';
 
 :root {
-    --color-primary: #de7934;
-    --color-secondary: #ffaa55;
+    --color-primary: #ff5221;
+    --color-secondary: #ffa534;
+    --color-hover: #ffcc8f80;
     --color-text: #292929;
     --color-border: #dddddd;
     --color-shadow: #969696;
-    --color-red: #db1120; /*ef093f*/ /*db1120*/
+    --color-red: #db1120;
     --color-orange: #f46200;
     --color-gold: #fcc201;
     --color-green: #0c713d;
@@ -18,9 +19,8 @@
     --color-white: #ffffff;
     --color-dark: #393939;
     --color-light: #f6f6f6;
-    --color-background: #eaf0f8;
-
-    --gradient-primary: linear-gradient(150deg, var(--color-secondary), var(--color-primary));
+    /* --color-background: #eaf0f8; */
+    --gradient-primary: linear-gradient(to bottom, #ffa534 0%, #ff5221b3 100%);
     --gradient-brown: linear-gradient(45deg, #c68e39, #fbfbbb);
     --gradient-pink: linear-gradient(45deg, #fde8e7, #fff5f4);
 
@@ -29,7 +29,7 @@
     --toastify-color-info: #3498db !important;
     --toastify-color-success: #0b990f !important;
     --toastify-color-warning: #fcc201 !important;
-    --toastify-color-error: #ef093f !important;
+    --toastify-color-error: #db1120 !important;
     --toastify-toast-width: 400px !important;
     --toastify-text-color-light: #595959 !important;
     --toastify-text-color-dark: #ffffff !important;

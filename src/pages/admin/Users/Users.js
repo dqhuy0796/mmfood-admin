@@ -12,12 +12,20 @@ import AdminMenu from '~/layouts/AdminMenu/AdminMenu';
 import styles from './Users.module.scss';
 import _ from 'lodash';
 import * as service from '~/services';
+import DialogMessage from '../../../components/partial/DialogMessage/DialogMessage';
 
 const cb = classNames.bind(styles);
 
 class Users extends React.Component {
     state = {
-        isModalActive: false,
+        dialog: {
+            active: false,
+        },
+        modal: {
+            active: false,
+            title: '',
+            user: {},
+        },
         currentUser: {},
         dataUsers: [],
         menu: [],
@@ -36,68 +44,138 @@ class Users extends React.Component {
                     id: 1,
                     icon: <BiPlus />,
                     title: 'Thêm mới',
-                    function: this.handleCollapseModal,
+                    onClick: () => this.handleActiveModal(),
                 },
                 {
                     id: 2,
                     icon: <BiUpload />,
                     title: 'Tải lên từ file',
+                    onClick: () => this.handleActiveDialog(),
                 },
                 {
                     id: 3,
                     icon: <BiPrinter />,
                     title: 'In dữ liệu',
+                    onClick: () => this.handleActiveDialog(),
                 },
                 {
                     id: 4,
                     icon: <BiSpreadsheet />,
                     title: 'Xuất EXCEL',
+                    onClick: () => this.handleActiveDialog(),
                 },
                 {
                     id: 5,
                     icon: <VscFilePdf />,
                     title: 'Xuất PDF',
+                    onClick: () => this.handleActiveDialog(),
                 },
                 {
                     id: 6,
                     icon: <RiDeleteBin5Line />,
                     title: 'Xóa tất cả',
+                    onClick: () => this.handleActiveDialog(),
                 },
             ],
         }));
     };
     // event handle
-    handleCollapseModal = () => {
+    handleActiveModal = (data) => {
+        // toggle (open/close) only
         this.setState((prevState) => ({
             ...prevState,
-            isModalActive: !prevState.isModalActive,
-            currentUser: {},
+            modal: {
+                active: !prevState.modal.active,
+            },
         }));
+        // map data
+        if (data && !_.isEmpty(data)) {
+            this.setState((prevState) => ({
+                ...prevState,
+                modal: {
+                    ...prevState.modal,
+                    title: 'Sửa thông tin tài khoản',
+                    data: data,
+                },
+            }));
+        } else {
+            this.setState((prevState) => ({
+                ...prevState,
+                modal: {
+                    ...prevState.modal,
+                    title: 'Thêm tài khoản mới',
+                    data: {},
+                },
+            }));
+        }
     };
-    handleCollapseModalWithData = (data) => {
+    handleActiveDialog = (data) => {
+        // toggle (open/close) only
         this.setState((prevState) => ({
             ...prevState,
-            isModalActive: !prevState.isModalActive,
-            currentUser: data,
+            dialog: {
+                active: !prevState.dialog.active,
+            },
         }));
+        // map data
+        if (data && !_.isEmpty(data)) {
+            this.setState((prevState) => ({
+                ...prevState,
+                dialog: {
+                    ...prevState.dialog,
+                    title: 'xác nhận xóa',
+                    message: `Bạn có chắc chắn muốn xóa tài khoản ${data.phone} (${data.role})?`,
+                    button: [
+                        {
+                            title: 'Xác nhận',
+                            color: 'error',
+                            onClick: () => {
+                                this.handleActiveDialog();
+                                this.handleDeleteUser(data.id);
+                            },
+                        },
+                        {
+                            title: 'Hủy',
+                            color: 'cancel',
+                            onClick: () => {
+                                this.handleActiveDialog();
+                            },
+                        },
+                    ],
+                },
+            }));
+        } else {
+            this.setState((prevState) => ({
+                ...prevState,
+                dialog: {
+                    ...prevState.dialog,
+                    title: 'Hệ thống',
+                    message: 'Không khả dụng. Vui lòng quay lại sau.',
+                },
+            }));
+        }
     };
+
     // process api
     handleGetUsers = async () => {
         try {
-            let apiData = await service.GetUsers();
-            this.setState((prevState) => ({
-                ...prevState,
-                dataUsers: apiData.users,
-            }));
+            let response = await service.GetUsers();
+            if (response && response.code === 0) {
+                this.setState((prevState) => ({
+                    ...prevState,
+                    dataUsers: response.users,
+                }));
+                toast.success('Lấy dữ liệu thành công!');
+            }
         } catch (error) {
             console.log(error);
         }
     };
     handleCreateUser = async (data) => {
         try {
-            let res = await service.CreateUser(data);
-            if (res && res.code === 0) {
-                this.handleCollapseModal();
+            let response = await service.CreateUser(data);
+            if (response && response.code === 0) {
+                this.handleActiveModal();
                 this.handleGetUsers();
                 toast.success('Tạo mới tài khoản thành công!');
             }
@@ -107,8 +185,8 @@ class Users extends React.Component {
     };
     handleDeleteUser = async (id) => {
         try {
-            let res = await service.DeleteUser(id);
-            if (res && res.code === 0) {
+            let response = await service.DeleteUser(id);
+            if (response && response.code === 0) {
                 this.handleGetUsers();
                 toast.success('Xóa tài khoản thành công!');
             }
@@ -118,9 +196,9 @@ class Users extends React.Component {
     };
     handleUpdateUser = async (data) => {
         try {
-            let res = await service.UpdateUser(data);
-            if (res && res.code === 0) {
-                this.handleCollapseModal();
+            let response = await service.UpdateUser(data);
+            if (response && response.code === 0) {
+                this.handleActiveModal();
                 this.handleGetUsers();
                 toast.success('Cập nhật thông tin thành công!');
             }
@@ -141,7 +219,7 @@ class Users extends React.Component {
                         <ul className={cb('header')}>
                             {this.state.menu.map((item, index) => (
                                 <li key={index}>
-                                    <Button size={'tiny'} color={'white'} onClick={item.function}>
+                                    <Button size={'tiny'} color={'white'} onClick={item.onClick}>
                                         <span>{item.icon}</span>
                                         <span>{item.title}</span>
                                     </Button>
@@ -151,23 +229,22 @@ class Users extends React.Component {
                         <div className={cb('body')}>
                             <DataTable
                                 data={this.state.dataUsers}
-                                handleDeleteUser={this.handleDeleteUser}
-                                handleCollapseModalWithData={this.handleCollapseModalWithData}
+                                handleActiveModal={this.handleActiveModal}
+                                handleActiveDialog={this.handleActiveDialog}
                             />
                         </div>
                         <div className={cb('footer')}>
-                            {this.state.isModalActive && (
+                            {this.state.modal.active && (
                                 <UserModal
-                                    title={
-                                        _.isEmpty(this.state.currentUser)
-                                            ? 'Thêm tài khoản mới'
-                                            : 'Sửa thông tin tài khoản'
-                                    }
-                                    data={this.state.currentUser}
+                                    {...this.state.modal}
                                     handleCreateUser={this.handleCreateUser}
                                     handleUpdateUser={this.handleUpdateUser}
-                                    handleCollapseModal={this.handleCollapseModal}
+                                    handleActiveModal={this.handleActiveModal}
                                 />
+                            )}
+
+                            {this.state.dialog.active && (
+                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
                             )}
 
                             <ToastContainer
@@ -201,8 +278,8 @@ const DataTable = (props) => (
                     <DataTableRow
                         key={index}
                         data={item}
-                        handleDeleteUser={props.handleDeleteUser}
-                        handleCollapseModalWithData={props.handleCollapseModalWithData}
+                        handleActiveDialog={props.handleActiveDialog}
+                        handleActiveModal={props.handleActiveModal}
                     />
                 ))
             ) : (
@@ -259,10 +336,10 @@ const DataTableRow = (props) => (
         <td>{props.data.role}</td>
         <td>
             <div className={cb('action')}>
-                <button onClick={() => props.handleCollapseModalWithData(props.data)}>
+                <button onClick={() => props.handleActiveModal(props.data)}>
                     <BiEditAlt />
                 </button>
-                <button onClick={() => props.handleDeleteUser(props.data.id)}>
+                <button onClick={() => props.handleActiveDialog(props.data)}>
                     <RiDeleteBin5Line />
                 </button>
             </div>
