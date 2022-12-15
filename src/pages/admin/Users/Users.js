@@ -12,7 +12,7 @@ import AdminMenu from '~/layouts/AdminMenu/AdminMenu';
 import styles from './Users.module.scss';
 import _ from 'lodash';
 import * as service from '~/services';
-import DialogMessage from '../../../components/partial/DialogMessage/DialogMessage';
+import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
 
 const cb = classNames.bind(styles);
 
@@ -163,7 +163,7 @@ class Users extends React.Component {
             if (response && response.code === 0) {
                 this.setState((prevState) => ({
                     ...prevState,
-                    dataUsers: response.users,
+                    dataUsers: response.result,
                 }));
                 toast.success('Lấy dữ liệu thành công!');
             }
@@ -206,6 +206,7 @@ class Users extends React.Component {
             console.log(error);
         }
     };
+
     render() {
         return (
             <div className={cb('wrapper')}>
