@@ -1,49 +1,60 @@
 import classNames from 'classnames/bind';
 import React from 'react';
-import { BiUser } from 'react-icons/bi';
-import { FiSearch } from 'react-icons/fi';
-import IconButton from '~/components/shared/buttons/IconButton';
+import { MdOutlineFastfood } from 'react-icons/md';
+import { RiLogoutBoxRLine, RiUserSettingsLine, RiUserStarLine } from 'react-icons/ri';
+import { TbTag } from 'react-icons/tb';
+import { TfiDashboard } from 'react-icons/tfi';
+import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
+import config from '~/config';
 import styles from './Navbar.module.scss';
 import NavbarItem from './NavbarItem';
-import config from '~/config';
 
 const cb = classNames.bind(styles);
 
 const menu = [
-    { title: 'đồ ăn', path: config.routes.food },
-    { title: 'đồ uống', path: config.routes.drink },
-    { title: 'lẩu', path: config.routes.hotpot },
-    { title: 'topping', path: config.routes.topping },
-    { title: 'khuyến mãi', path: config.routes.promotion },
-    { title: 'về chúng tôi', path: config.routes.about },
+    { icon: <TfiDashboard />, title: 'bảng điều khiển', path: config.routes.dashboard },
+    { icon: <RiUserSettingsLine />, title: 'tài khoản', path: config.routes.user },
+    { icon: <RiUserStarLine />, title: 'khách hàng', path: config.routes.customer },
+    { icon: <MdOutlineFastfood />, title: 'sản phẩm', path: config.routes.product },
+    { icon: <TbTag />, title: 'đơn hàng', path: config.routes.order },
 ];
 
 class Navbar extends React.Component {
-    state = {};
+    state = {
+        isMobileMenuOpening: false,
+    };
+
+    handleCollapseMenu = () => {
+        this.setState((prevState) => ({
+            ...prevState,
+            isMobileMenuOpening: !prevState.isMobileMenuOpening,
+        }));
+    };
+
     render() {
         return (
-            <div className={cb('navbar', this.props.isCollapsed && 'collapse')}>
-                <NavbarSearchItem />
+            <div className={cb('navbar', this.state.isMobileMenuOpening && 'collapse')}>
                 <ul>
+                    <li>
+                        <HamburgerButton
+                            color={'white'}
+                            onClick={this.handleCollapseMenu}
+                            isCollapsed={this.state.isMobileMenuOpening}
+                        />
+                        <span className={cb('logo')}>MMFood</span>
+                    </li>
                     {menu.map((item, index) => (
                         <li key={index}>
-                            <NavbarItem path={item.path} title={item.title} />
+                            <NavbarItem path={item.path} icon={item.icon} title={item.title} />
                         </li>
                     ))}
-                    {/* <IconButton icon={<BiUser />} /> thay đổi thứ tự của nút này */}
+                    <li>
+                        <NavbarItem path={config.routes.login} icon={<RiLogoutBoxRLine />} title="đăng xuất" />
+                    </li>
                 </ul>
             </div>
         );
     }
 }
-
-const NavbarSearchItem = (props) => (
-    <div className={cb('nav-search-item')}>
-        <input type="text" className={cb('search-input')} placeholder="Tìm kiếm..." />
-        <button className={cb('search-btn')}>
-            <FiSearch className={cb('search-icon')} />
-        </button>
-    </div>
-);
 
 export default Navbar;

@@ -1,44 +1,18 @@
 import config from '~/config';
-import About from '~/pages/client/About';
-import Account from '~/pages/client/Account';
-import Drink from '~/pages/client/Drink';
-import Food from '~/pages/client/Food';
-import Home from '~/pages/client/Home';
-import Hotpot from '~/pages/client/Hotpot';
-import Login from '~/pages/client/Login';
-import Checkout from '~/pages/client/Checkout';
-import Promotion from '~/pages/client/Promotion';
-import Search from '~/pages/client/Search';
-import Topping from '~/pages/client/Topping';
 
-import Dashboard from '~/pages/admin/Dashboard';
-import Customers from '~/pages/admin/Customers';
-import Products from '~/pages/admin/Products';
-import Orders from '~/pages/admin/Orders';
-import Users from '~/pages/admin/Users';
+import Login from '~/pages/Login';
+import Dashboard from '~/pages/Dashboard';
+import Customer from '~/pages/Customer';
+import Product from '~/pages/Product';
+import Order from '~/pages/Order';
+import User from '~/pages/User';
 
-const publicRoutes = [
-    { path: config.routes.home, Component: Home },
-    { path: config.routes.food, Component: Food },
-    { path: config.routes.drink, Component: Drink },
-    { path: config.routes.hotpot, Component: Hotpot },
-    { path: config.routes.topping, Component: Topping },
-    { path: config.routes.promotion, Component: Promotion },
-    { path: config.routes.about, Component: About },
-    { path: config.routes.search, Component: Search },
-    { path: config.routes.login, Component: Login },
-    { path: config.routes.payment, Component: Checkout },
-];
-const privateRoutes = [
-    // cmt
-    { path: config.routes.account, Component: Account },
-];
 const adminRoutes = [
+    { path: config.routes.login, Component: Login },
     { path: config.routes.dashboard, Component: Dashboard },
-    { path: config.routes.customers, Component: Customers },
-    { path: config.routes.products, Component: Products },
-    { path: config.routes.orders, Component: Orders },
-    { path: config.routes.users, Component: Users },
-    // comment cho no viet xuong dong
+    { path: config.routes.customer, Component: Customer },
+    { path: config.routes.product, Component: Product },
+    { path: config.routes.order, Component: Order },
+    { path: config.routes.user, Component: User },
 ];
-export { publicRoutes, adminRoutes };
+export { adminRoutes };

@@ -1,22 +1,11 @@
 const routes = {
-    home: '/',
-    food: '/food',
-    drink: '/drink',
-    hotpot: '/hotpot',
-    topping: '/topping',
-    promotion: '/promotion',
-    about: '/about',
+    dashboard: '/',
     login: '/login',
-    search: '/search',
-    payment: '/payment',
-
-    account: '/account',
-
-    dashboard: '/admin/dashboard',
-    customers: '/admin/customers',
-    products: '/admin/products',
-    orders: '/admin/orders',
-    users: '/admin/users',
+    customer: '/customer',
+    product: '/product',
+    order: '/order',
+    post: '/post',
+    user: '/user',
 };
 
 export default routes;

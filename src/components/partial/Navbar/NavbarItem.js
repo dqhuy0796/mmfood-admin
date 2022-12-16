@@ -9,14 +9,13 @@ class NavbarItem extends React.Component {
     state = {};
     render() {
         return (
-            <div className={cb('nav-item')}>
-                <NavLink
-                    to={this.props.path}
-                    className={({ isActive }) => (isActive ? cb('nav-link', 'actived') : cb('nav-link'))}
-                >
-                    {this.props.title}
-                </NavLink>
-            </div>
+            <NavLink
+                to={this.props.path}
+                className={({ isActive }) => (isActive ? cb('nav-link', 'actived') : cb('nav-link'))}
+            >
+                <span className={cb('icon')}>{this.props.icon}</span>
+                <span className={cb('title')}>{this.props.title}</span>
+            </NavLink>
         );
     }
 }
