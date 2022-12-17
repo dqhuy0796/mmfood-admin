@@ -1,6 +1,6 @@
 const routes = {
-    dashboard: '/',
-    login: '/login',
+    login: '/',
+    dashboard: '/dashboard',
     customer: '/customer',
     product: '/product',
     order: '/order',
