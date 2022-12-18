@@ -17,7 +17,6 @@ class ProductModal extends React.Component {
     componentDidMount() {
         this.handleInit();
         this.handleMapOrCreateInput();
-        console.log(this.props.data);
     }
     componentWillUnmount() {}
     //process data
@@ -86,10 +85,8 @@ class ProductModal extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (_.isEmpty(this.props.data)) {
-            console.log('On Create User:', this.state.data);
             this.props.handleCreateProduct(this.state.data);
         } else {
-            console.log('On Update User:', this.state.data);
             this.props.handleUpdateProduct(this.state.data);
         }
     };

@@ -142,11 +142,9 @@ class UserModal extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (_.isEmpty(this.props.data)) {
-            console.log('On Create User:', this.state.data);
-            this.props.handleCreateUser(this.state.data);
+            this.props.handleCreate(this.state.data);
         } else {
-            console.log('On Update User:', this.state.data);
-            this.props.handleUpdateUser(this.state.data);
+            this.props.handleUpdate(this.state.data);
         }
     };
     handleValidate = () => {

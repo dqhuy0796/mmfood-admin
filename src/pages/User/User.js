@@ -11,7 +11,7 @@ import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
 import Navbar from '~/components/partial/Navbar';
 import Button from '~/components/shared/buttons/Button';
 import { userService } from '~/services';
-import PageTitle from '../../components/partial/PageTitle/PageTitle';
+import PageTitle from '~/components/partial/PageTitle/PageTitle';
 import styles from './User.module.scss';
 
 const cb = classNames.bind(styles);
@@ -163,7 +163,6 @@ class User extends React.Component {
                     ...prevState,
                     dataUsers: response.result,
                 }));
-                toast.success('Lấy dữ liệu thành công!');
             }
         } catch (error) {
             console.log(error);
@@ -233,8 +232,8 @@ class User extends React.Component {
                             {this.state.modal.active && (
                                 <UserModal
                                     {...this.state.modal}
-                                    handleCreateUser={this.handleCreateUser}
-                                    handleUpdateUser={this.handleUpdateUser}
+                                    handleCreate={this.handleCreateUser}
+                                    handleUpdate={this.handleUpdateUser}
                                     handleActiveModal={this.handleActiveModal}
                                 />
                             )}

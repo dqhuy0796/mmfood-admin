@@ -55,7 +55,7 @@
         li {
             .title,
             .logo {
-                display: none;
+                display: none !important;
             }
         }
     }

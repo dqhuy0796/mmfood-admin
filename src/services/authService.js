@@ -13,3 +13,43 @@ export const loginService = async (user) => {
         console.log(error);
     }
 };
+
+export const updateProfile = async (user) => {
+    try {
+        const path = 'admin/updateprofile';
+        const payload = {
+            id: user.id,
+            name: user.name,
+            birth: user.birth,
+            avatarUrl: user.avatarUrl,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
+            role: user.role,
+        };
+        const data = await httpsRequest.putApi(path, payload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const changePassword = async (user) => {
+    try {
+        const path = 'admin/changepassword';
+        const payload = {
+            id: user.id,
+            name: user.name,
+            birth: user.birth,
+            avatarUrl: user.avatarUrl,
+            phone: user.phone,
+            email: user.email,
+            address: user.address,
+            role: user.role,
+        };
+        const data = await httpsRequest.putApi(path, payload);
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+};

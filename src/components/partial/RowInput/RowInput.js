@@ -108,7 +108,6 @@ class RowInput extends React.Component {
                 ...prevState,
                 value: this.imageUrlRef.value,
             }));
-            console.log('image', this.state.option.value);
         }
     };
 

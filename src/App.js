@@ -1,18 +1,36 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { adminRoutes } from './routes';
+import { adminRoutes, publicRoutes } from './routes';
+// redux and actions
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+import React from 'react';
 
-function App() {
-    return (
-        <BrowserRouter>
-            <div className="App">
-                <Routes>
-                    {adminRoutes.map((route, index) => {
-                        return <Route key={index} path={route.path} element={<route.Component />} />;
-                    })}
-                </Routes>
-            </div>
-        </BrowserRouter>
-    );
+class App extends React.Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="App">
+                    <Routes>
+                        {publicRoutes.map((route, index) => {
+                            return <Route key={index} path={route.path} element={<route.Component />} />;
+                        })}
+                        {this.props.isLoggedIn &&
+                            adminRoutes.map((route, index) => {
+                                return <Route key={index} path={route.path} element={<route.Component />} />;
+                            })}
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.auth.isLoggedIn,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(App);

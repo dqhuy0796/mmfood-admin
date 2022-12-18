@@ -75,10 +75,8 @@ class PostModal extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         if (_.isEmpty(this.props.data)) {
-            console.log('On Create User:', this.state.data);
             this.props.handleCreatePost(this.state.data);
         } else {
-            console.log('On Update User:', this.state.data);
             this.props.handleUpdatePost(this.state.data);
         }
     };

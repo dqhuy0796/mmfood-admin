@@ -2,7 +2,7 @@ import * as httpsRequest from '~/utils/httpsRequest';
 
 export const GetProduct = async () => {
     try {
-        const path = 'Product/get';
+        const path = 'product/get';
         const payload = {
             id: 'all',
         };
@@ -15,7 +15,7 @@ export const GetProduct = async () => {
 
 export const GetProductById = async (id) => {
     try {
-        const path = 'Product/get';
+        const path = 'product/get';
         const payload = {
             id: id,
         };
@@ -28,7 +28,7 @@ export const GetProductById = async (id) => {
 
 export const CreateProduct = async (Product) => {
     try {
-        const path = 'Product/create';
+        const path = 'product/create';
         const payload = {
             name: Product.name,
             categoryId: Product.categoryId,
@@ -48,7 +48,7 @@ export const CreateProduct = async (Product) => {
 
 export const UpdateProduct = async (Product) => {
     try {
-        const path = 'Product/update';
+        const path = 'product/update';
         const payload = {
             id: Product.id,
             name: Product.name,
@@ -69,7 +69,7 @@ export const UpdateProduct = async (Product) => {
 
 export const DeleteProduct = async (ProductId) => {
     try {
-        const path = 'Product/delete';
+        const path = 'product/delete';
         const payload = {
             id: ProductId,
         };

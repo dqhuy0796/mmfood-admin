@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .content {
+        text-align: center;
+        width: 50%;
+        p {
+            padding: 8px;
+        }
+    }
+    .chart {
+        width: 50%;
+    }
+}

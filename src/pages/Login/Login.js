@@ -4,6 +4,7 @@ import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import { authService } from '~/services';
+import _ from 'lodash';
 // redux and actions
 import { connect } from 'react-redux';
 import { login } from '~/redux/actions/authActions';
@@ -50,8 +51,10 @@ class Login extends React.Component {
                 ...prevState,
                 message: response.message,
             }));
-            this.props.login(response.result);
-            this.props.navigate('/dashboard');
+            if (!_.isEmpty(response.result)) {
+                this.props.login(response.result);
+                this.props.navigate('/dashboard');
+            }
         }
     };
 
@@ -105,8 +108,8 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    isLoggedIn: state.isLoggedIn,
-    user: state.user,
+    isLoggedIn: state.auth.isLoggedIn,
+    user: state.auth.user,
 });
 
 const mapActionsToProps = (dispatch) => ({

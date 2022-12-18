@@ -13,8 +13,20 @@ class NavbarItem extends React.Component {
                 to={this.props.path}
                 className={({ isActive }) => (isActive ? cb('nav-link', 'actived') : cb('nav-link'))}
             >
-                <span className={cb('icon')}>{this.props.icon}</span>
-                <span className={cb('title')}>{this.props.title}</span>
+                {this.props.icon && (
+                    <>
+                        <span className={cb('icon')}>{this.props.icon}</span>
+                        <span className={cb('title')}>{this.props.title}</span>
+                    </>
+                )}
+                {this.props.avatar && (
+                    <>
+                        <div className={cb('avatar')}>
+                            <img src={this.props.avatar} alt={this.props.title} />
+                        </div>
+                        <span className={cb('name')}>{this.props.title}</span>
+                    </>
+                )}
             </NavLink>
         );
     }

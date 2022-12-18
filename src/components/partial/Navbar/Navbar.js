@@ -1,4 +1,3 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 import { MdOutlineFastfood } from 'react-icons/md';
 import { RiLogoutBoxRLine, RiUserSettingsLine, RiUserStarLine } from 'react-icons/ri';
@@ -7,8 +6,13 @@ import { TfiDashboard } from 'react-icons/tfi';
 import { SlDocs } from 'react-icons/sl';
 import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
 import config from '~/config';
-import styles from './Navbar.module.scss';
 import NavbarItem from './NavbarItem';
+// redux and actions
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+//style
+import classNames from 'classnames/bind';
+import styles from './Navbar.module.scss';
 
 const cb = classNames.bind(styles);
 
@@ -45,6 +49,16 @@ class Navbar extends React.Component {
                         />
                         <span className={cb('logo')}>MMFood</span>
                     </li>
+                    {this.props.isLoggedIn && (
+                        <li>
+                            <NavbarItem
+                                path={config.routes.account}
+                                avatar={this.props.user.avatarUrl}
+                                title={this.props.user.name}
+                                // onClick log out in redux
+                            />
+                        </li>
+                    )}
                     {menu.map((item, index) => (
                         <li key={index}>
                             <NavbarItem path={item.path} icon={item.icon} title={item.title} />
@@ -59,4 +73,13 @@ class Navbar extends React.Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.auth.isLoggedIn,
+    user: state.auth.user,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(Navbar);
