@@ -1,6 +1,6 @@
 import * as httpsRequest from '~/utils/httpsRequest';
 
-export const LoginService = async (user) => {
+export const loginService = async (user) => {
     const path = 'admin/login';
     const payload = {
         phone: user.phone,

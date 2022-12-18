@@ -4,7 +4,12 @@ import RowInput from '~/components/partial/RowInput';
 import Button from '~/components/shared/buttons/Button';
 import TransparentButton from '~/components/shared/buttons/TransparentButton';
 import { authService } from '~/services';
+// redux and actions
+import { connect } from 'react-redux';
+import { login } from '~/redux/actions/authActions';
+// styles
 import styles from './Login.module.scss';
+import { withRouter } from './withRouter';
 
 const cb = classNames.bind(styles);
 
@@ -39,12 +44,14 @@ class Login extends React.Component {
     };
 
     handleLogin = async (data) => {
-        let response = await authService.LoginService(data);
+        let response = await authService.loginService(data);
         if (response) {
             this.setState((prevState) => ({
                 ...prevState,
                 message: response.message,
             }));
+            this.props.login(response.result);
+            this.props.navigate('/dashboard');
         }
     };
 
@@ -97,4 +104,13 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+    isLoggedIn: state.isLoggedIn,
+    user: state.user,
+});
+
+const mapActionsToProps = (dispatch) => ({
+    login: (user) => dispatch(login(user)),
+});
+
+export default connect(mapStateToProps, mapActionsToProps)(withRouter(Login));

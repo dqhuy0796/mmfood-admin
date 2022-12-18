@@ -6,17 +6,17 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { VscFilePdf } from 'react-icons/vsc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ProductModal from '~/components/modals/ProductModal';
+import PostModal from '~/components/modals/PostModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
 import Navbar from '~/components/partial/Navbar';
+import PostItem from '~/components/partial/PostItem';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import Button from '~/components/shared/buttons/Button';
-import { productService } from '~/services';
-import ProductItem from '../../components/partial/ProductItem/ProductItem';
-import styles from './Product.module.scss';
+import { postsService } from '~/services';
+import styles from './Posts.module.scss';
 const cb = classNames.bind(styles);
 
-class Product extends React.Component {
+class Posts extends React.Component {
     state = {
         dialog: {
             active: false,
@@ -24,13 +24,13 @@ class Product extends React.Component {
         modal: {
             active: false,
         },
-        currentUser: {},
-        data: [],
+        currentPost: {},
+        dataPosts: [],
         menu: [],
     };
 
     componentDidMount() {
-        this.handleGetProducts();
+        this.handleGetPost();
         this.handleMapOptionMenu();
     }
     //init
@@ -92,7 +92,7 @@ class Product extends React.Component {
                 ...prevState,
                 modal: {
                     ...prevState.modal,
-                    title: 'Sửa thông tin sản phẩm',
+                    title: 'Sửa thông tin bài viết',
                     data: data,
                 },
             }));
@@ -101,7 +101,7 @@ class Product extends React.Component {
                 ...prevState,
                 modal: {
                     ...prevState.modal,
-                    title: 'Thêm sản phẩm',
+                    title: 'Thêm bài viết mới',
                     data: {},
                 },
             }));
@@ -122,14 +122,14 @@ class Product extends React.Component {
                 dialog: {
                     ...prevState.dialog,
                     title: 'xác nhận xóa',
-                    message: `Bạn có chắc chắn muốn xóa sản phẩm "${data.name}"?!`,
+                    message: `Bạn có chắc chắn muốn xóa bài biết ${data.title} `,
                     button: [
                         {
                             title: 'Xác nhận',
                             color: 'error',
                             onClick: () => {
                                 this.handleActiveDialog();
-                                this.handleDeleteProduct(data.id);
+                                this.handleDeletePost(data.id);
                             },
                         },
                         {
@@ -155,48 +155,48 @@ class Product extends React.Component {
     };
 
     // process api
-    handleGetProducts = async () => {
+    handleGetPost = async () => {
         try {
-            let response = await productService.GetProduct();
+            let response = await postsService.GetPosts();
             if (response && response.code === 0) {
                 this.setState((prevState) => ({
                     ...prevState,
-                    data: response.result,
+                    dataPosts: response.result,
                 }));
             }
         } catch (error) {
             console.log(error);
         }
     };
-    handleCreateProduct = async (data) => {
+    handleCreatePost = async (data) => {
         try {
-            let response = await productService.CreateProduct(data);
+            let response = await postsService.CreatePost(data);
             if (response && response.code === 0) {
                 this.handleActiveModal();
-                this.handleGetProducts();
-                toast.success('Tạo mới sản phẩm thành công!');
+                this.handleGetPost();
+                toast.success('Tạo mới bài viết thành công!');
             }
         } catch (error) {
             console.log(error);
         }
     };
-    handleDeleteProduct = async (id) => {
+    handleDeletePost = async (id) => {
         try {
-            let response = await productService.DeleteProduct(id);
+            let response = await postsService.DeletePost(id);
             if (response && response.code === 0) {
-                this.handleGetProducts();
-                toast.success('Xóa sản phẩm thành công!');
+                this.handleGetPost();
+                toast.success('Xóa bài viết thành công!');
             }
         } catch (error) {
             console.log(error);
         }
     };
-    handleUpdateProduct = async (data) => {
+    handleUpdatePost = async (data) => {
         try {
-            let response = await productService.UpdateProduct(data);
+            let response = await postsService.UpdatePost(data);
             if (response && response.code === 0) {
                 this.handleActiveModal();
-                this.handleGetProducts();
+                this.handleGetPost();
                 toast.success('Cập nhật thông tin thành công!');
             }
         } catch (error) {
@@ -209,7 +209,7 @@ class Product extends React.Component {
                 <Navbar />
                 <div className={cb('container')}>
                     <div className={cb('title')}>
-                        <h6>Quản lý sản phẩm</h6>
+                        <h6>Quản lý bài viết</h6>
                         <span>{<RealtimeClock />}</span>
                     </div>
                     <div className={cb('content')}>
@@ -224,18 +224,21 @@ class Product extends React.Component {
                             ))}
                         </ul>
                         <div className={cb('body')}>
-                            <ProductContainer
-                                data={this.state.data}
-                                handleActiveModal={this.handleActiveModal}
-                                handleActiveDialog={this.handleActiveDialog}
-                            />
+                            {this.state.dataPosts.map((item, index) => (
+                                <PostItem
+                                    key={index}
+                                    data={item}
+                                    handleActiveModal={this.handleActiveModal}
+                                    handleActiveDialog={this.handleActiveDialog}
+                                />
+                            ))}
                         </div>
                         <div className={cb('footer')}>
                             {this.state.modal.active && (
-                                <ProductModal
+                                <PostModal
                                     {...this.state.modal}
-                                    handleCreateProduct={this.handleCreateProduct}
-                                    handleUpdateProduct={this.handleUpdateProduct}
+                                    handleCreatePost={this.handleCreatePost}
+                                    handleUpdatePost={this.handleUpdatePost}
                                     handleActiveModal={this.handleActiveModal}
                                 />
                             )}
@@ -264,18 +267,4 @@ class Product extends React.Component {
     }
 }
 
-export default Product;
-
-const ProductContainer = (props) => (
-    <ul className={cb('list')}>
-        {props.data.map((item, index) => (
-            <li key={index}>
-                <ProductItem
-                    data={item}
-                    handleActiveDialog={props.handleActiveDialog}
-                    handleActiveModal={props.handleActiveModal}
-                />
-            </li>
-        ))}
-    </ul>
-);
+export default Posts;

@@ -39,7 +39,7 @@ class IconButton extends React.Component {
         }
         this.setState((prevState) => ({
             ...prevState,
-            className: ['wrapper', this.props.size, this.props.shape, this.props.color],
+            className: ['wrapper', this.props.className, this.props.size, this.props.shape, this.props.color],
             options: {
                 ...prevState.options,
                 onClick: this.props.onClick,

@@ -4,6 +4,7 @@ import { MdOutlineFastfood } from 'react-icons/md';
 import { RiLogoutBoxRLine, RiUserSettingsLine, RiUserStarLine } from 'react-icons/ri';
 import { TbTag } from 'react-icons/tb';
 import { TfiDashboard } from 'react-icons/tfi';
+import { SlDocs } from 'react-icons/sl';
 import HamburgerButton from '~/components/shared/buttons/HamburgerButton';
 import config from '~/config';
 import styles from './Navbar.module.scss';
@@ -15,6 +16,7 @@ const menu = [
     { icon: <TfiDashboard />, title: 'bảng điều khiển', path: config.routes.dashboard },
     { icon: <RiUserSettingsLine />, title: 'tài khoản', path: config.routes.user },
     { icon: <RiUserStarLine />, title: 'khách hàng', path: config.routes.customer },
+    { icon: <SlDocs />, title: 'bài viết', path: config.routes.posts },
     { icon: <MdOutlineFastfood />, title: 'sản phẩm', path: config.routes.product },
     { icon: <TbTag />, title: 'đơn hàng', path: config.routes.order },
 ];

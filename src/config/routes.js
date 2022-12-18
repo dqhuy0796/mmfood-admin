@@ -4,7 +4,7 @@ const routes = {
     customer: '/customer',
     product: '/product',
     order: '/order',
-    post: '/post',
+    posts: '/posts',
     user: '/user',
 };
 
