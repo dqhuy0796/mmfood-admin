@@ -19,6 +19,11 @@
     --color-white: #ffffff;
     --color-dark: #393939;
     --color-light: #f6f6f6;
+
+    --color-info: #3498db;
+    --color-success: #0b990f;
+    --color-warning: #fcbd01;
+    --color-error: #db1120;
     /* --color-background: #eaf0f8; */
     --gradient-primary: linear-gradient(to bottom, #ffa534 0%, #ff5221b3 100%);
     --gradient-brown: linear-gradient(45deg, #c68e39, #fbfbbb);

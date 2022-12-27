@@ -34,20 +34,15 @@ export const updateProfile = async (user) => {
     }
 };
 
-export const changePassword = async (user) => {
+export const changePassword = async (phone, password, newPassword) => {
     try {
-        const path = 'admin/changepassword';
+        const path = 'changepassword';
         const payload = {
-            id: user.id,
-            name: user.name,
-            birth: user.birth,
-            avatarUrl: user.avatarUrl,
-            phone: user.phone,
-            email: user.email,
-            address: user.address,
-            role: user.role,
+            phone,
+            password,
+            newPassword,
         };
-        const data = await httpsRequest.putApi(path, payload);
+        const data = await httpsRequest.postApi(path, payload);
         return data;
     } catch (error) {
         console.log(error);
