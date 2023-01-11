@@ -4,7 +4,7 @@
     width: 100%;
     .time-node {
         display: flex;
-        justify-content: flex-end;
+        justify-content: flex-start;
         gap: 16px;
         .icon {
             position: relative;
@@ -21,7 +21,6 @@
                 color: var(--color-white);
                 font-size: 1rem;
             }
-
             &::before {
                 content: '';
                 position: absolute;
@@ -44,7 +43,7 @@
             }
         }
         .description {
-            text-align: right;
+            text-align: left;
             margin: 8px 0;
             .content {
                 font-size: 1.4rem;
@@ -54,7 +53,7 @@
             .time {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: flex-end;
+                justify-content: flex-start;
                 gap: 4px 12px;
                 span {
                     font-size: 1.4rem;
@@ -79,6 +78,20 @@
                 .content {
                     font-size: 1.8rem;
                     color: var(--color-success);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    .timeline {
+        .time-node {
+            flex-direction: row-reverse;
+            .description {
+                text-align: right;
+                .time {
+                    justify-content: flex-end;
                 }
             }
         }
