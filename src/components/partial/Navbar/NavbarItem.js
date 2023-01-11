@@ -16,7 +16,7 @@ class NavbarItem extends React.Component {
                 {this.props.icon && (
                     <>
                         <span className={cb('icon')}>{this.props.icon}</span>
-                        <span className={cb('title')}>{this.props.title}</span>
+                        {!this.props.isCollapsed && <span className={cb('title')}>{this.props.title}</span>}
                     </>
                 )}
                 {this.props.avatar && (
@@ -24,7 +24,7 @@ class NavbarItem extends React.Component {
                         <div className={cb('avatar')}>
                             <img src={this.props.avatar} alt={this.props.title} />
                         </div>
-                        <span className={cb('name')}>{this.props.title}</span>
+                        {!this.props.isCollapsed && <span className={cb('name')}>{this.props.title}</span>}
                     </>
                 )}
             </NavLink>

@@ -9,7 +9,7 @@ import config from '~/config';
 import NavbarItem from './NavbarItem';
 // redux and actions
 import { connect } from 'react-redux';
-import { login } from '~/redux/actions/authActions';
+import { login, logout } from '~/redux/actions/authActions';
 //style
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
@@ -27,25 +27,25 @@ const menu = [
 
 class Navbar extends React.Component {
     state = {
-        isMobileMenuOpening: false,
+        isCollapsed: false,
     };
 
     handleCollapseMenu = () => {
         this.setState((prevState) => ({
             ...prevState,
-            isMobileMenuOpening: !prevState.isMobileMenuOpening,
+            isCollapsed: !prevState.isCollapsed,
         }));
     };
 
     render() {
         return (
-            <div className={cb('navbar', this.state.isMobileMenuOpening && 'collapse')}>
+            <div className={cb('navbar', this.state.isCollapsed && 'collapse')}>
                 <ul>
                     <li>
                         <HamburgerButton
                             color={'white'}
                             onClick={this.handleCollapseMenu}
-                            isCollapsed={this.state.isMobileMenuOpening}
+                            isCollapsed={this.state.isCollapsed}
                         />
                         <span className={cb('logo')}>MMFood</span>
                     </li>
@@ -55,17 +55,27 @@ class Navbar extends React.Component {
                                 path={config.routes.account}
                                 avatar={this.props.user.avatarUrl}
                                 title={this.props.user.name}
-                                // onClick log out in redux
+                                isCollapsed={this.state.isCollapsed}
                             />
                         </li>
                     )}
                     {menu.map((item, index) => (
                         <li key={index}>
-                            <NavbarItem path={item.path} icon={item.icon} title={item.title} />
+                            <NavbarItem
+                                path={item.path}
+                                icon={item.icon}
+                                title={item.title}
+                                isCollapsed={this.state.isCollapsed}
+                            />
                         </li>
                     ))}
-                    <li>
-                        <NavbarItem path={config.routes.login} icon={<RiLogoutBoxRLine />} title="đăng xuất" />
+                    <li onClick={() => this.props.logout()}>
+                        <NavbarItem
+                            path={config.routes.login}
+                            icon={<RiLogoutBoxRLine />}
+                            title={'đăng xuất'}
+                            isCollapsed={this.state.isCollapsed}
+                        />
                     </li>
                 </ul>
             </div>
@@ -80,6 +90,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = (dispatch) => ({
     login: (user) => dispatch(login(user)),
+    logout: () => dispatch(logout()),
 });
 
 export default connect(mapStateToProps, mapActionsToProps)(Navbar);

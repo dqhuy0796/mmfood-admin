@@ -124,11 +124,11 @@ const Status = (props) => {
             content = 'Đã xác nhận';
             break;
         case 2:
-            classNames = [...classNames, 'green'];
+            classNames = [...classNames, 'blue'];
             content = 'Đang giao hàng';
             break;
         case 3:
-            classNames = [...classNames, 'blue'];
+            classNames = [...classNames, 'green'];
             content = 'Giao hàng thành công';
             break;
         case 4:

@@ -3,7 +3,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PostModal from '~/components/modals/PostModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import BarChart from './BarChart';
 import DoughnutChart from './DoughnutChart';
@@ -31,54 +30,51 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <div className={cb('title')}>
-                        <h6>Bảng điều khiển</h6>
-                        <span>{<RealtimeClock />}</span>
+                <div className={cb('title')}>
+                    <h6>Bảng điều khiển</h6>
+                    <span>{<RealtimeClock />}</span>
+                </div>
+                <div className={cb('content')}>
+                    <ul className={cb('header')}></ul>
+                    <div className={cb('body')}>
+                        <ul className={cb('chart-container')}>
+                            <li>
+                                <BarChart />
+                            </li>
+                            <li>
+                                <LineChart />
+                            </li>
+                            <li>
+                                <DoughnutChart />
+                            </li>
+                        </ul>
                     </div>
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}></ul>
-                        <div className={cb('body')}>
-                            <ul className={cb('chart-container')}>
-                                <li>
-                                    <BarChart />
-                                </li>
-                                <li>
-                                    <LineChart />
-                                </li>
-                                <li>
-                                    <DoughnutChart />
-                                </li>
-                            </ul>
-                        </div>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <PostModal
-                                    {...this.state.modal}
-                                    handleCreatePost={this.handleCreatePost}
-                                    handleUpdatePost={this.handleUpdatePost}
-                                    handleActiveModal={this.handleActiveModal}
-                                />
-                            )}
-
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
-
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
+                    <div className={cb('footer')}>
+                        {this.state.modal.active && (
+                            <PostModal
+                                {...this.state.modal}
+                                handleCreatePost={this.handleCreatePost}
+                                handleUpdatePost={this.handleUpdatePost}
+                                handleActiveModal={this.handleActiveModal}
                             />
-                        </div>
+                        )}
+
+                        {this.state.dialog.active && (
+                            <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                        )}
+
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                 </div>
             </div>

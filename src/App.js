@@ -12,11 +12,31 @@ class App extends React.Component {
                 <div className="App">
                     <Routes>
                         {publicRoutes.map((route, index) => {
-                            return <Route key={index} path={route.path} element={<route.Component />} />;
+                            return (
+                                <Route
+                                    key={index}
+                                    path={route.path}
+                                    element={
+                                        <route.Layout>
+                                            <route.Component />
+                                        </route.Layout>
+                                    }
+                                />
+                            );
                         })}
                         {this.props.isLoggedIn &&
                             adminRoutes.map((route, index) => {
-                                return <Route key={index} path={route.path} element={<route.Component />} />;
+                                return (
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={
+                                            <route.Layout>
+                                                <route.Component />
+                                            </route.Layout>
+                                        }
+                                    />
+                                );
                             })}
                     </Routes>
                 </div>

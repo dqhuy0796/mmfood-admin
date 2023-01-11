@@ -3,8 +3,8 @@
     display: block;
     padding: 6px;
     text-align: center;
-    box-shadow: 1px 2px 4px 1px var(--color-shadow);
     border-radius: 6px;
+    border: 1px solid var(--color-border);
     background-color: var(--color-white);
     overflow: hidden;
     &:hover {

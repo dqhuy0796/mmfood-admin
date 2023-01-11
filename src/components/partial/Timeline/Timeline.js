@@ -1,5 +1,6 @@
-import classNames from 'classnames/bind';
 import React from 'react';
+import { BsCheckLg } from 'react-icons/bs';
+import classNames from 'classnames/bind';
 import styles from './Timeline.module.scss';
 const css = classNames.bind(styles);
 
@@ -51,7 +52,11 @@ const TimeNode = (props) => {
                     <span>{date}</span>
                 </p>
             </div>
-            <div className={css('icon')}></div>
+            <div className={css('icon')}>
+                <span>
+                    <BsCheckLg />
+                </span>
+            </div>
         </div>
     );
 };

@@ -8,11 +8,10 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductModal from '~/components/modals/ProductModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import Button from '~/components/shared/buttons/Button';
 import { productService } from '~/services';
-import ProductItem from '../../components/partial/ProductItem/ProductItem';
+import ProductItem from '~/components/partial/ProductItem';
 import styles from './Product.module.scss';
 const cb = classNames.bind(styles);
 
@@ -206,58 +205,51 @@ class Product extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <div className={cb('title')}>
-                        <h6>Quản lý sản phẩm</h6>
-                        <span>{<RealtimeClock />}</span>
-                    </div>
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}>
-                            {this.state.menu.map((item, index) => (
-                                <li key={index}>
-                                    <Button size={'tiny'} color={'white'} onClick={item.onClick}>
-                                        <span>{item.icon}</span>
-                                        <span>{item.title}</span>
-                                    </Button>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className={cb('body')}>
-                            <ProductContainer
-                                data={this.state.data}
-                                handleActiveModal={this.handleActiveModal}
-                                handleActiveDialog={this.handleActiveDialog}
-                            />
-                        </div>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <ProductModal
-                                    {...this.state.modal}
-                                    handleCreateProduct={this.handleCreateProduct}
-                                    handleUpdateProduct={this.handleUpdateProduct}
-                                    handleActiveModal={this.handleActiveModal}
-                                />
-                            )}
+                <div className={cb('title')}>
+                    <h6>Quản lý sản phẩm</h6>
+                    <span>{<RealtimeClock />}</span>
+                </div>
+                <ul className={cb('action')}>
+                    {this.state.menu.map((item, index) => (
+                        <li key={index}>
+                            <Button size={'tiny'} color={'white'} onClick={item.onClick}>
+                                <span>{item.icon}</span>
+                                <span>{item.title}</span>
+                            </Button>
+                        </li>
+                    ))}
+                </ul>
+                <div className={cb('body')}>
+                    <ProductContainer
+                        data={this.state.data}
+                        handleActiveModal={this.handleActiveModal}
+                        handleActiveDialog={this.handleActiveDialog}
+                    />
+                    {this.state.modal.active && (
+                        <ProductModal
+                            {...this.state.modal}
+                            handleCreateProduct={this.handleCreateProduct}
+                            handleUpdateProduct={this.handleUpdateProduct}
+                            handleActiveModal={this.handleActiveModal}
+                        />
+                    )}
 
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
+                    {this.state.dialog.active && (
+                        <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                    )}
 
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
-                            />
-                        </div>
-                    </div>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick={false}
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                    />
                 </div>
             </div>
         );

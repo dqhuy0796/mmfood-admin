@@ -5,7 +5,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserModal from '~/components/modals/UserModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import IconButton from '~/components/shared/buttons/IconButton';
 import { authService } from '~/services';
@@ -134,91 +133,88 @@ class Account extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <div className={cb('title')}>
-                        <h6>Thông tin tài khoản</h6>
-                        <span>{<RealtimeClock />}</span>
-                    </div>
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}>
-                            <div className={cb('info')}>
-                                <div className={cb('avatar')}>
-                                    <img src={this.props.user.avatarUrl} alt={this.props.user.name} />
-                                </div>
-                                <div className={cb('detail')}>
-                                    <ul>
-                                        <li>
-                                            <p>{this.props.user.name}</p>
-                                        </li>
-                                        <li>
-                                            <p>{this.props.user.email}</p>
-                                        </li>
-                                        <li>
-                                            <p>{this.props.user.phone}</p>
-                                        </li>
-                                        <li>
-                                            <p>{this.props.user.birth}</p>
-                                        </li>
-                                        <li>
-                                            <p>{this.props.user.address}</p>
-                                        </li>
-                                    </ul>
-                                    <ul className={cb('action')}>
-                                        <li>
-                                            <IconButton
-                                                size={'tiny'}
-                                                color={'blur'}
-                                                onClick={() => this.handleActiveModal(this.props.user)}
-                                            >
-                                                <IoSettingsOutline />
-                                            </IconButton>
-                                        </li>
-                                        <li>
-                                            <IconButton size={'tiny'} color={'blur'}>
-                                                <IoLockClosedSharp />
-                                            </IconButton>
-                                        </li>
-                                    </ul>
-                                </div>
+                <div className={cb('title')}>
+                    <h6>Thông tin tài khoản</h6>
+                    <span>{<RealtimeClock />}</span>
+                </div>
+                <div className={cb('content')}>
+                    <ul className={cb('header')}>
+                        <div className={cb('info')}>
+                            <div className={cb('avatar')}>
+                                <img src={this.props.user.avatarUrl} alt={this.props.user.name} />
                             </div>
-                        </ul>
-                        <div className={cb('body')}>
-                            <ul className={cb('list')}>
-                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
-                                    <li key={index}>
-                                        <span></span>
+                            <div className={cb('detail')}>
+                                <ul>
+                                    <li>
+                                        <p>{this.props.user.name}</p>
                                     </li>
-                                ))}
-                            </ul>
+                                    <li>
+                                        <p>{this.props.user.email}</p>
+                                    </li>
+                                    <li>
+                                        <p>{this.props.user.phone}</p>
+                                    </li>
+                                    <li>
+                                        <p>{this.props.user.birth}</p>
+                                    </li>
+                                    <li>
+                                        <p>{this.props.user.address}</p>
+                                    </li>
+                                </ul>
+                                <ul className={cb('action')}>
+                                    <li>
+                                        <IconButton
+                                            size={'tiny'}
+                                            color={'blur'}
+                                            onClick={() => this.handleActiveModal(this.props.user)}
+                                        >
+                                            <IoSettingsOutline />
+                                        </IconButton>
+                                    </li>
+                                    <li>
+                                        <IconButton size={'tiny'} color={'blur'}>
+                                            <IoLockClosedSharp />
+                                        </IconButton>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <UserModal
-                                    {...this.state.modal}
-                                    handleCreatePost={this.handleCreatePost}
-                                    handleUpdatePost={this.handleUpdatePost}
-                                    handleActiveModal={this.handleActiveModal}
-                                />
-                            )}
-
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
-
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
+                    </ul>
+                    <div className={cb('body')}>
+                        <ul className={cb('list')}>
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
+                                <li key={index}>
+                                    <span></span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div className={cb('footer')}>
+                        {this.state.modal.active && (
+                            <UserModal
+                                {...this.state.modal}
+                                handleCreatePost={this.handleCreatePost}
+                                handleUpdatePost={this.handleUpdatePost}
+                                handleActiveModal={this.handleActiveModal}
                             />
-                        </div>
+                        )}
+
+                        {this.state.dialog.active && (
+                            <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                        )}
+
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                 </div>
             </div>

@@ -3,11 +3,14 @@ export const authActionTypes = Object.freeze({
     logout: 'LOG_OUT',
 });
 
-export const cartActionTypes = Object.freeze({
-    addItem: 'ADD_ITEM',
-    removeItem: 'REMOVE_ITEM',
-    increaseItem: 'INCREASE_ITEM',
-    descreaseItem: 'DESCREASE_ITEM',
+export const modalActionTypes = Object.freeze({
+    showModal: 'SHOW_MODAL',
+    hideModal: 'HIDE_MODAL',
+});
+
+export const dialogActionTypes = Object.freeze({
+    showDialog: 'SHOW_DIALOG',
+    hideDialog: 'HIDE_DIALOG',
 });
 
 export const apiActionTypes = Object.freeze({

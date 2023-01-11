@@ -8,7 +8,6 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PostModal from '~/components/modals/PostModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
 import PostsItem from '~/components/partial/PostsItem/PostsItem';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import Button from '~/components/shared/buttons/Button';
@@ -206,61 +205,58 @@ class Posts extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <div className={cb('title')}>
-                        <h6>Quản lý bài viết</h6>
-                        <span>{<RealtimeClock />}</span>
-                    </div>
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}>
-                            {this.state.menu.map((item, index) => (
-                                <li key={index}>
-                                    <Button size={'tiny'} color={'white'} onClick={item.onClick}>
-                                        <span>{item.icon}</span>
-                                        <span>{item.title}</span>
-                                    </Button>
-                                </li>
-                            ))}
-                        </ul>
-                        <ul className={cb('body')}>
-                            {this.state.dataPosts.map((item, index) => (
-                                <li key={index}>
-                                    <PostsItem
-                                        data={item}
-                                        handleActiveModal={this.handleActiveModal}
-                                        handleActiveDialog={this.handleActiveDialog}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <PostModal
-                                    {...this.state.modal}
-                                    handleCreatePost={this.handleCreatePost}
-                                    handleUpdatePost={this.handleUpdatePost}
+                <div className={cb('title')}>
+                    <h6>Quản lý bài viết</h6>
+                    <span>{<RealtimeClock />}</span>
+                </div>
+                <div className={cb('content')}>
+                    <ul className={cb('header')}>
+                        {this.state.menu.map((item, index) => (
+                            <li key={index}>
+                                <Button size={'tiny'} color={'white'} onClick={item.onClick}>
+                                    <span>{item.icon}</span>
+                                    <span>{item.title}</span>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                    <ul className={cb('body')}>
+                        {this.state.dataPosts.map((item, index) => (
+                            <li key={index}>
+                                <PostsItem
+                                    data={item}
                                     handleActiveModal={this.handleActiveModal}
+                                    handleActiveDialog={this.handleActiveDialog}
                                 />
-                            )}
-
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
-
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={cb('footer')}>
+                        {this.state.modal.active && (
+                            <PostModal
+                                {...this.state.modal}
+                                handleCreatePost={this.handleCreatePost}
+                                handleUpdatePost={this.handleUpdatePost}
+                                handleActiveModal={this.handleActiveModal}
                             />
-                        </div>
+                        )}
+
+                        {this.state.dialog.active && (
+                            <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                        )}
+
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                 </div>
             </div>

@@ -19,3 +19,7 @@ export const login = (user) => async (dispatch) => {
     }
     dispatch(setLoggedIn(payload));
 };
+
+export const logout = () => async (dispatch) => {
+    dispatch(setLoggedIn({ isLoggedIn: false, user: {} }));
+};

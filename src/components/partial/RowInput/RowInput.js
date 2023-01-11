@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import { RiEye2Line, RiEyeCloseLine, RiUploadCloud2Line } from 'react-icons/ri';
 import styles from './RowInput.module.scss';
-import Button from '~/components/shared/buttons/Button';
 
 const cb = classNames.bind(styles);
 
@@ -132,21 +131,18 @@ class RowInput extends React.Component {
                                 <textarea
                                     {...this.state.option}
                                     ref={this.imageUrlRef}
-                                    value={this.props.value}
+                                    value={this.props.value || ''}
                                     placeholder={'Dán URL hình ảnh...'}
                                     onChange={this.props.onChange}
                                     onFocus={this.props.onChange}
                                     onBlur={this.props.onChange}
                                 />
-                                {/* <Button size={'tiny'} color={'primary'}>
-                                    Load
-                                </Button> */}
                             </div>
                         </div>
                     ) : (
                         <input
                             {...this.state.option}
-                            value={this.props.value}
+                            value={this.props.value || ''}
                             onChange={this.props.onChange}
                             onFocus={this.props.onChange}
                             onBlur={this.props.onChange}

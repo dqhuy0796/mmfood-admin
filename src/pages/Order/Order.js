@@ -1,16 +1,15 @@
+import _ from 'lodash';
 import React from 'react';
 import { BiPlus, BiPrinter, BiSpreadsheet, BiUpload } from 'react-icons/bi';
-import _ from 'lodash';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import { VscFilePdf } from 'react-icons/vsc';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OrderDetailModal from '~/components/modals/OrderDetailModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
+import OrderItem from '~/components/partial/OrderItem';
 import RealtimeClock from '~/components/partial/RealtimeClock';
 import Button from '~/components/shared/buttons/Button';
-import OrderItem from '~/components/partial/OrderItem';
 import { orderService } from '~/services';
 //style
 import classNames from 'classnames/bind';
@@ -195,71 +194,68 @@ class Order extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <div className={cb('title')}>
-                        <h6>Quản lý đơn hàng</h6>
-                        <span>{<RealtimeClock />}</span>
-                    </div>
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}>
-                            {this.state.menu.map((item, index) => (
-                                <li key={index}>
-                                    <Button size={'tiny'} color={'white'} onClick={item.onClick}>
-                                        <span>{item.icon}</span>
-                                        <span>{item.title}</span>
-                                    </Button>
-                                </li>
-                            ))}
+                <div className={cb('title')}>
+                    <h6>Quản lý đơn hàng</h6>
+                    <span>{<RealtimeClock />}</span>
+                </div>
+                <div className={cb('content')}>
+                    <ul className={cb('header')}>
+                        {this.state.menu.map((item, index) => (
+                            <li key={index}>
+                                <Button size={'tiny'} color={'white'} onClick={item.onClick}>
+                                    <span>{item.icon}</span>
+                                    <span>{item.title}</span>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={cb('body')}>
+                        <ul className={cb('list')}>
+                            {this.state.dataOrders && this.state.dataOrders.length > 0 ? (
+                                this.state.dataOrders.map((item, index) => (
+                                    <li key={index} className={cb('order-item')}>
+                                        <OrderItem
+                                            data={item}
+                                            handleActiveModal={this.handleActiveModal}
+                                            handleConfirmOrder={this.handleConfirmOrder}
+                                            handleDeliveryOrder={this.handleDeliveryOrder}
+                                            handleCancelOrder={this.handleCancelOrder}
+                                        />
+                                    </li>
+                                ))
+                            ) : (
+                                <div className={cb('empty')}>
+                                    <p>Không có đơn hàng nào</p>
+                                </div>
+                            )}
                         </ul>
-                        <div className={cb('body')}>
-                            <ul className={cb('list')}>
-                                {this.state.dataOrders && this.state.dataOrders.length > 0 ? (
-                                    this.state.dataOrders.map((item, index) => (
-                                        <li key={index} className={cb('order-item')}>
-                                            <OrderItem
-                                                data={item}
-                                                handleActiveModal={this.handleActiveModal}
-                                                handleConfirmOrder={this.handleConfirmOrder}
-                                                handleDeliveryOrder={this.handleDeliveryOrder}
-                                                handleCancelOrder={this.handleCancelOrder}
-                                            />
-                                        </li>
-                                    ))
-                                ) : (
-                                    <div className={cb('empty')}>
-                                        <p>Khong có đơn hàng nào</p>
-                                    </div>
-                                )}
-                            </ul>
-                        </div>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <OrderDetailModal
-                                    {...this.state.modal}
-                                    handleCreatePost={this.handleCreatePost}
-                                    handleUpdatePost={this.handleUpdatePost}
-                                    handleActiveModal={this.handleActiveModal}
-                                />
-                            )}
-
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
-
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
+                    </div>
+                    <div className={cb('footer')}>
+                        {this.state.modal.active && (
+                            <OrderDetailModal
+                                {...this.state.modal}
+                                handleCreatePost={this.handleCreatePost}
+                                handleUpdatePost={this.handleUpdatePost}
+                                handleActiveModal={this.handleActiveModal}
                             />
-                        </div>
+                        )}
+
+                        {this.state.dialog.active && (
+                            <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                        )}
+
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                 </div>
             </div>

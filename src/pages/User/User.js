@@ -8,10 +8,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserModal from '~/components/modals/UserModal';
 import DialogMessage from '~/components/partial/DialogMessage/DialogMessage';
-import Navbar from '~/components/partial/Navbar';
+import PageTitle from '~/components/partial/PageTitle/PageTitle';
 import Button from '~/components/shared/buttons/Button';
 import { userService } from '~/services';
-import PageTitle from '~/components/partial/PageTitle/PageTitle';
 import styles from './User.module.scss';
 
 const cb = classNames.bind(styles);
@@ -207,54 +206,51 @@ class User extends React.Component {
     render() {
         return (
             <div className={cb('wrapper')}>
-                <Navbar />
-                <div className={cb('container')}>
-                    <PageTitle title={'Quản lý tài khoản'} />
-                    <div className={cb('content')}>
-                        <ul className={cb('header')}>
-                            {this.state.menu.map((item, index) => (
-                                <li key={index}>
-                                    <Button size={'tiny'} color={'white'} onClick={item.onClick}>
-                                        <span>{item.icon}</span>
-                                        <span>{item.title}</span>
-                                    </Button>
-                                </li>
-                            ))}
-                        </ul>
-                        <div className={cb('body')}>
-                            <DataTable
-                                data={this.state.dataUsers}
+                <PageTitle title={'Quản lý tài khoản'} />
+                <div className={cb('content')}>
+                    <ul className={cb('header')}>
+                        {this.state.menu.map((item, index) => (
+                            <li key={index}>
+                                <Button size={'tiny'} color={'white'} onClick={item.onClick}>
+                                    <span>{item.icon}</span>
+                                    <span>{item.title}</span>
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
+                    <div className={cb('body')}>
+                        <DataTable
+                            data={this.state.dataUsers}
+                            handleActiveModal={this.handleActiveModal}
+                            handleActiveDialog={this.handleActiveDialog}
+                        />
+                    </div>
+                    <div className={cb('footer')}>
+                        {this.state.modal.active && (
+                            <UserModal
+                                {...this.state.modal}
+                                handleCreate={this.handleCreateUser}
+                                handleUpdate={this.handleUpdateUser}
                                 handleActiveModal={this.handleActiveModal}
-                                handleActiveDialog={this.handleActiveDialog}
                             />
-                        </div>
-                        <div className={cb('footer')}>
-                            {this.state.modal.active && (
-                                <UserModal
-                                    {...this.state.modal}
-                                    handleCreate={this.handleCreateUser}
-                                    handleUpdate={this.handleUpdateUser}
-                                    handleActiveModal={this.handleActiveModal}
-                                />
-                            )}
+                        )}
 
-                            {this.state.dialog.active && (
-                                <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
-                            )}
+                        {this.state.dialog.active && (
+                            <DialogMessage {...this.state.dialog} handleActiveDialog={this.handleActiveDialog} />
+                        )}
 
-                            <ToastContainer
-                                position="top-right"
-                                autoClose={5000}
-                                hideProgressBar={false}
-                                newestOnTop={false}
-                                closeOnClick={false}
-                                rtl={false}
-                                pauseOnFocusLoss
-                                draggable
-                                pauseOnHover
-                                theme="light"
-                            />
-                        </div>
+                        <ToastContainer
+                            position="top-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick={false}
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme="light"
+                        />
                     </div>
                 </div>
             </div>
