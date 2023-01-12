@@ -14,7 +14,7 @@ import { login } from '~/redux/actions/authActions';
 //style
 import classNames from 'classnames/bind';
 import styles from './Account.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Account extends React.Component {
     state = {
@@ -132,18 +132,18 @@ class Account extends React.Component {
 
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('title')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('title')}>
                     <h6>Thông tin tài khoản</h6>
                     <span>{<RealtimeClock />}</span>
                 </div>
-                <div className={cb('content')}>
-                    <ul className={cb('header')}>
-                        <div className={cb('info')}>
-                            <div className={cb('avatar')}>
+                <div className={scss('content')}>
+                    <ul className={scss('header')}>
+                        <div className={scss('info')}>
+                            <div className={scss('avatar')}>
                                 <img src={this.props.user.avatarUrl} alt={this.props.user.name} />
                             </div>
-                            <div className={cb('detail')}>
+                            <div className={scss('detail')}>
                                 <ul>
                                     <li>
                                         <p>{this.props.user.name}</p>
@@ -161,7 +161,7 @@ class Account extends React.Component {
                                         <p>{this.props.user.address}</p>
                                     </li>
                                 </ul>
-                                <ul className={cb('action')}>
+                                <ul className={scss('action')}>
                                     <li>
                                         <IconButton
                                             size={'tiny'}
@@ -180,8 +180,8 @@ class Account extends React.Component {
                             </div>
                         </div>
                     </ul>
-                    <div className={cb('body')}>
-                        <ul className={cb('list')}>
+                    <div className={scss('body')}>
+                        <ul className={scss('list')}>
                             {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((item, index) => (
                                 <li key={index}>
                                     <span></span>
@@ -189,7 +189,7 @@ class Account extends React.Component {
                             ))}
                         </ul>
                     </div>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.state.modal.active && (
                             <UserModal
                                 {...this.state.modal}

@@ -13,7 +13,7 @@ import RealtimeClock from '~/components/partial/RealtimeClock';
 import Button from '~/components/shared/buttons/Button';
 import { postsService } from '~/services';
 import styles from './Posts.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Posts extends React.Component {
     state = {
@@ -204,13 +204,13 @@ class Posts extends React.Component {
     };
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('title')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('title')}>
                     <h6>Quản lý bài viết</h6>
                     <span>{<RealtimeClock />}</span>
                 </div>
-                <div className={cb('content')}>
-                    <ul className={cb('header')}>
+                <div className={scss('content')}>
+                    <ul className={scss('header')}>
                         {this.state.menu.map((item, index) => (
                             <li key={index}>
                                 <Button size={'tiny'} color={'white'} onClick={item.onClick}>
@@ -220,7 +220,7 @@ class Posts extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <ul className={cb('body')}>
+                    <ul className={scss('body')}>
                         {this.state.dataPosts.map((item, index) => (
                             <li key={index}>
                                 <PostsItem
@@ -231,7 +231,7 @@ class Posts extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.state.modal.active && (
                             <PostModal
                                 {...this.state.modal}

@@ -5,7 +5,7 @@ import RowInput from '~/components/partial/RowInput';
 import BaseCenterModal from '~/components/modals/BaseCenterModal';
 import styles from './UserModal.module.scss';
 import _ from 'lodash';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class UserModal extends React.Component {
     state = {
@@ -147,26 +147,13 @@ class UserModal extends React.Component {
             this.props.handleUpdate(this.state.data);
         }
     };
-    handleValidate = () => {
-        let arrRequiredField = ['phone', 'email', 'name', 'address'];
-        for (let i = 0; i < arrRequiredField.length; i++) {
-            if (!this.state.data[arrRequiredField[i]]) {
-                this.setState((prevState) => ({
-                    ...prevState,
-                    message: `Bạn quên chưa tạo ${arrRequiredField[i]}`,
-                }));
-                return false;
-            }
-        }
-        return true;
-    };
 
     render() {
         return (
             <BaseCenterModal title={this.props.title} handleActiveModal={this.props.handleActiveModal}>
-                <form className={cb('container')} onSubmit={this.handleSubmit}>
-                    {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
-                    <ul className={cb('body')}>
+                <form className={scss('container')} onSubmit={this.handleSubmit}>
+                    {this.state.message && <p className={scss('message')}>{this.state.message}</p>}
+                    <ul className={scss('body')}>
                         {this.state.content.map((item, index) => (
                             <li key={index}>
                                 <RowInput
@@ -177,13 +164,10 @@ class UserModal extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('footer')}>
-                        <input id="submit-btn" type={'submit'} hidden />
-                        <label htmlFor="submit-btn">
-                            <Button size={'large'} color={'primary'}>
-                                {_.isEmpty(this.props.data) ? 'Tạo tài khoản' : 'Xác nhận sửa'}
-                            </Button>
-                        </label>
+                    <div className={scss('footer')}>
+                        <Button type={'submit'} size={'large'} color={'primary'}>
+                            {_.isEmpty(this.props.data) ? 'Tạo tài khoản' : 'Xác nhận sửa'}
+                        </Button>
 
                         <Button size={'large'} color={'white'} onClick={this.props.handleActiveModal}>
                             Hủy

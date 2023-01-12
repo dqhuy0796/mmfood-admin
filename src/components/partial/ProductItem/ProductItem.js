@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 // style
 import classNames from 'classnames/bind';
 import styles from './ProductItem.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 const calcDiscount = (newPrice, oldPrice) => Math.round(((newPrice - oldPrice) / oldPrice) * 100);
 
@@ -17,18 +17,18 @@ class ProductItem extends React.Component {
 
     render() {
         return (
-            <Link className={cb('product-item')}>
+            <Link className={scss('product-item')}>
                 {this.props.data.oldPrice > this.props.data.newPrice && (
-                    <div className={cb('discount')}>
+                    <div className={scss('discount')}>
                         <p>
                             <span>{calcDiscount(this.props.data.newPrice, this.props.data.oldPrice)}</span>
                             <span>%</span>
                         </p>
                     </div>
                 )}
-                <div className={cb('header')}>
+                <div className={scss('header')}>
                     <IconButton
-                        className={cb('delete')}
+                        className={scss('delete')}
                         size={'medium'}
                         shape={'rect'}
                         color={'blur'}
@@ -37,7 +37,7 @@ class ProductItem extends React.Component {
                         <MdDeleteOutline />
                     </IconButton>
                     <IconButton
-                        className={cb('edit')}
+                        className={scss('edit')}
                         size={'medium'}
                         shape={'rect'}
                         color={'blur'}
@@ -47,15 +47,15 @@ class ProductItem extends React.Component {
                     </IconButton>
                     <img src={this.props.data.imageUrl} alt={this.props.data.name} />
                 </div>
-                <div className={cb('body')}>
-                    <p className={cb('name')}>
+                <div className={scss('body')}>
+                    <p className={scss('name')}>
                         <span>{this.props.data.name}</span>
                     </p>
-                    <p className={cb('size')}>
+                    <p className={scss('size')}>
                         <span>Kích thước: </span>
                         <span>{this.props.data.size}</span>
                     </p>
-                    <p className={cb('price')}>
+                    <p className={scss('price')}>
                         <ItemPrice value={this.props.data.newPrice} />
                         <ItemPrice value={this.props.data.oldPrice} />
                     </p>

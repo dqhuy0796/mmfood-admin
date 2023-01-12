@@ -15,7 +15,7 @@ import { orderService } from '~/services';
 import classNames from 'classnames/bind';
 import styles from './Order.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Order extends React.Component {
     state = {
@@ -193,13 +193,13 @@ class Order extends React.Component {
     };
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('title')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('title')}>
                     <h6>Quản lý đơn hàng</h6>
                     <span>{<RealtimeClock />}</span>
                 </div>
-                <div className={cb('content')}>
-                    <ul className={cb('header')}>
+                <div className={scss('content')}>
+                    <ul className={scss('header')}>
                         {this.state.menu.map((item, index) => (
                             <li key={index}>
                                 <Button size={'tiny'} color={'white'} onClick={item.onClick}>
@@ -209,11 +209,11 @@ class Order extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('body')}>
-                        <ul className={cb('list')}>
+                    <div className={scss('body')}>
+                        <ul className={scss('list')}>
                             {this.state.dataOrders && this.state.dataOrders.length > 0 ? (
                                 this.state.dataOrders.map((item, index) => (
-                                    <li key={index} className={cb('order-item')}>
+                                    <li key={index} className={scss('order-item')}>
                                         <OrderItem
                                             data={item}
                                             handleActiveModal={this.handleActiveModal}
@@ -224,13 +224,13 @@ class Order extends React.Component {
                                     </li>
                                 ))
                             ) : (
-                                <div className={cb('empty')}>
+                                <div className={scss('empty')}>
                                     <p>Không có đơn hàng nào</p>
                                 </div>
                             )}
                         </ul>
                     </div>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.state.modal.active && (
                             <OrderDetailModal
                                 {...this.state.modal}

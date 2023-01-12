@@ -14,7 +14,7 @@ import { login, logout } from '~/redux/actions/authActions';
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 const menu = [
     { icon: <TfiDashboard />, title: 'bảng điều khiển', path: config.routes.dashboard },
@@ -39,7 +39,7 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div className={cb('navbar', this.state.isCollapsed && 'collapse')}>
+            <div className={scss('navbar', this.state.isCollapsed && 'collapse')}>
                 <ul>
                     <li>
                         <HamburgerButton
@@ -47,7 +47,7 @@ class Navbar extends React.Component {
                             onClick={this.handleCollapseMenu}
                             isCollapsed={this.state.isCollapsed}
                         />
-                        <span className={cb('logo')}>MMFood</span>
+                        <span className={scss('logo', this.state.isCollapsed && 'hidden')}>MMFood</span>
                     </li>
                     {this.props.isLoggedIn && (
                         <li>

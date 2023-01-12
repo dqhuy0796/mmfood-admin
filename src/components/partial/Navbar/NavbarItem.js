@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './NavbarItem.module.scss';
 import classNames from 'classnames/bind';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class NavbarItem extends React.Component {
     state = {};
@@ -11,20 +11,20 @@ class NavbarItem extends React.Component {
         return (
             <NavLink
                 to={this.props.path}
-                className={({ isActive }) => (isActive ? cb('nav-link', 'actived') : cb('nav-link'))}
+                className={({ isActive }) => (isActive ? scss('nav-link', 'actived') : scss('nav-link'))}
             >
                 {this.props.icon && (
                     <>
-                        <span className={cb('icon')}>{this.props.icon}</span>
-                        {!this.props.isCollapsed && <span className={cb('title')}>{this.props.title}</span>}
+                        <span className={scss('icon')}>{this.props.icon}</span>
+                        <span className={scss('title', this.props.isCollapsed && 'hidden')}>{this.props.title}</span>
                     </>
                 )}
                 {this.props.avatar && (
                     <>
-                        <div className={cb('avatar')}>
+                        <span className={scss('avatar')}>
                             <img src={this.props.avatar} alt={this.props.title} />
-                        </div>
-                        {!this.props.isCollapsed && <span className={cb('name')}>{this.props.title}</span>}
+                        </span>
+                        <span className={scss('name', this.props.isCollapsed && 'hidden')}>{this.props.title}</span>
                     </>
                 )}
             </NavLink>

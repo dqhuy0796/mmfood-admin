@@ -3,12 +3,12 @@ import React from 'react';
 import styles from './PageTitle.module.scss';
 import RealtimeClock from '../RealtimeClock';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class PageTitle extends React.Component {
     render() {
         return (
-            <div className={cb('title')}>
+            <div className={scss('title')}>
                 <h6>{this.props.title}</h6>
                 <span>{<RealtimeClock />}</span>
             </div>

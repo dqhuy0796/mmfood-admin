@@ -5,7 +5,7 @@ import RowInput from '~/components/partial/RowInput';
 import BaseCenterModal from '~/components/modals/BaseCenterModal';
 import styles from './ChangePasswordModal.module.scss';
 import _ from 'lodash';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class ChangePasswordModal extends React.Component {
     state = {
@@ -61,9 +61,9 @@ class ChangePasswordModal extends React.Component {
     render() {
         return (
             <BaseCenterModal title={this.props.title} handleActiveModal={this.props.handleActiveModal}>
-                <form className={cb('container')} onSubmit={this.handleSubmit}>
-                    {this.state.message && <p className={cb('message')}>{this.state.message}</p>}
-                    <ul className={cb('body')}>
+                <form className={scss('container')} onSubmit={this.handleSubmit}>
+                    {this.state.message && <p className={scss('message')}>{this.state.message}</p>}
+                    <ul className={scss('body')}>
                         {this.state.content.map((item, index) => (
                             <li key={index}>
                                 <RowInput
@@ -74,7 +74,7 @@ class ChangePasswordModal extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         <input id="submit-btn" type={'submit'} hidden />
                         <label htmlFor="submit-btn">
                             <Button size={'large'} color={'primary'}>

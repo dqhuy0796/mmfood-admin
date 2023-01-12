@@ -13,7 +13,7 @@ import { login } from '~/redux/actions/authActions';
 //style
 import classNames from 'classnames/bind';
 import styles from './Dashboard.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Dashboard extends React.Component {
     state = {
@@ -29,15 +29,15 @@ class Dashboard extends React.Component {
     };
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('title')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('title')}>
                     <h6>Bảng điều khiển</h6>
                     <span>{<RealtimeClock />}</span>
                 </div>
-                <div className={cb('content')}>
-                    <ul className={cb('header')}></ul>
-                    <div className={cb('body')}>
-                        <ul className={cb('chart-container')}>
+                <div className={scss('content')}>
+                    <ul className={scss('header')}></ul>
+                    <div className={scss('body')}>
+                        <ul className={scss('chart-container')}>
                             <li>
                                 <BarChart />
                             </li>
@@ -49,7 +49,7 @@ class Dashboard extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.state.modal.active && (
                             <PostModal
                                 {...this.state.modal}

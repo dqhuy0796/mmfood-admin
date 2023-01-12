@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import React from 'react';
 import styles from './RealtimeClock.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class RealtimeClock extends React.Component {
     state = {
@@ -25,7 +25,7 @@ class RealtimeClock extends React.Component {
 
     render() {
         return (
-            <span className={cb('clock')}>
+            <span className={scss('clock')}>
                 <p>
                     <span>{this.handleDisplayNumberFormat(this.state.time.getHours())}</span>
                     <span>:</span>

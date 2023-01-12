@@ -13,7 +13,7 @@ import Button from '~/components/shared/buttons/Button';
 import { productService } from '~/services';
 import ProductItem from '~/components/partial/ProductItem';
 import styles from './Product.module.scss';
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class Product extends React.Component {
     state = {
@@ -204,12 +204,12 @@ class Product extends React.Component {
     };
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('title')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('title')}>
                     <h6>Quản lý sản phẩm</h6>
                     <span>{<RealtimeClock />}</span>
                 </div>
-                <ul className={cb('action')}>
+                <ul className={scss('action')}>
                     {this.state.menu.map((item, index) => (
                         <li key={index}>
                             <Button size={'tiny'} color={'white'} onClick={item.onClick}>
@@ -219,7 +219,7 @@ class Product extends React.Component {
                         </li>
                     ))}
                 </ul>
-                <div className={cb('body')}>
+                <div className={scss('body')}>
                     <ProductContainer
                         data={this.state.data}
                         handleActiveModal={this.handleActiveModal}
@@ -259,7 +259,7 @@ class Product extends React.Component {
 export default Product;
 
 const ProductContainer = (props) => (
-    <ul className={cb('list')}>
+    <ul className={scss('list')}>
         {props.data.map((item, index) => (
             <li key={index}>
                 <ProductItem

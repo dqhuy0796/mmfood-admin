@@ -5,6 +5,12 @@
     text-decoration: none;
     color: var(--color-white);
     border-radius: 4px;
+    transform-origin: left;
+    -webkit-transition: linear 0.3s;
+    -moz-transition: linear 0.3s;
+    -ms-transition: linear 0.3s;
+    -o-transition: linear 0.3s;
+    transition: linear 0.3s;
     &:hover {
         background-color: var(--color-hover);
     }
@@ -19,8 +25,8 @@
     }
     .avatar {
         img {
-            width: 32px;
-            height: 32px;
+            width: 36px;
+            height: 36px;
             object-fit: cover;
             background-color: var(--color-shadow);
             border-radius: 50%;
@@ -35,13 +41,26 @@
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 1;
         overflow: hidden;
+        transform-origin: left;
+        animation: fade-in 0.3s ease-in;
     }
     .title {
         font-size: 1.4rem;
         font-weight: 400;
         text-transform: uppercase;
     }
+    .hidden {
+        display: none;
+    }
 }
 .nav-link.actived {
     box-shadow: 0 0 4px 1px var(--color-white);
+}
+@keyframes fade-in {
+    0% {
+        transform: scaleX(0.05);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }

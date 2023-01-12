@@ -1,26 +1,12 @@
 import React from 'react';
-import OrderProductItem from '../OrderProductItem';
 import Button from '~/components/shared/buttons/Button';
-// redux and action
-import { connect } from 'react-redux';
+import OrderProductItem from '../OrderProductItem';
 // style
 import classNames from 'classnames/bind';
 import styles from './OrderItem.module.scss';
-const css = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class OrderItem extends React.Component {
-    state = {};
-
-    handleDisplayOrderState = (code) => {
-        switch (code) {
-            case 0:
-                return 'Chờ xử lý grey';
-
-            default:
-                break;
-        }
-    };
-
     render() {
         const data = this.props.data;
         const items = JSON.parse(data.items);
@@ -29,19 +15,19 @@ class OrderItem extends React.Component {
         const paymentDetails = JSON.parse(data.paymentDetails);
         const receiverDetails = JSON.parse(data.receiverDetails);
         return (
-            <div className={css('wrapper')}>
-                <div className={css('header')}>
-                    <p className={css('uuid')}>{'#' + data.orderUuid}</p>
+            <div className={scss('wrapper')}>
+                <div className={scss('header')}>
+                    <p className={scss('uuid')}>{'#' + data.orderUuid}</p>
                     <Status code={currentState.code} />
                 </div>
-                <ul className={css('body')}>
-                    <div className={css('receiver')}>
-                        <p className={css('title')}>Địa chỉ nhận hàng</p>
-                        <p className={css('name')}>{receiverDetails.name}</p>
-                        <p className={css('phone')}>{receiverDetails.phone}</p>
-                        <p className={css('address')}>{receiverDetails.address}</p>
+                <ul className={scss('body')}>
+                    <div className={scss('receiver')}>
+                        <p className={scss('title')}>Địa chỉ nhận hàng</p>
+                        <p className={scss('name')}>{receiverDetails.name}</p>
+                        <p className={scss('phone')}>{receiverDetails.phone}</p>
+                        <p className={scss('address')}>{receiverDetails.address}</p>
                     </div>
-                    <ul className={css('list')}>
+                    <ul className={scss('list')}>
                         {items.length < 3 ? (
                             items.map((item, index) => (
                                 <li key={index}>
@@ -55,19 +41,19 @@ class OrderItem extends React.Component {
                                         <OrderProductItem data={item} />
                                     </li>
                                 ))}
-                                <li className={css('hidden-item')}>
+                                <li className={scss('hidden-item')}>
                                     <span>Và {items.length - 3} sản phẩm khác</span>
                                 </li>
                             </>
                         )}
                     </ul>
                 </ul>
-                <div className={css('footer')}>
+                <div className={scss('footer')}>
                     <p>
                         <span>Thành tiền:</span>
                         <ItemPrice value={paymentDetails.totalPayment} />
                     </p>
-                    <div className={css('action')}>
+                    <div className={scss('action')}>
                         {currentState.code === 0 && (
                             <Button
                                 size={'tiny'}
@@ -139,18 +125,10 @@ const Status = (props) => {
             break;
     }
     return (
-        <p className={css(classNames)} title="Trạng thái đơn hàng">
+        <p className={scss(classNames)} title="Trạng thái đơn hàng">
             {content}
         </p>
     );
 };
 
-const mapStateToProps = (state) => ({
-    // cart: state.cart,
-});
-
-const mapActionsToProps = (dispatch) => ({
-    //
-});
-
-export default connect(mapStateToProps, mapActionsToProps)(OrderItem);
+export default OrderItem;

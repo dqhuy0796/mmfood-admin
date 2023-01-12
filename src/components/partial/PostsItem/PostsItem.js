@@ -6,7 +6,7 @@ import IconButton from '~/components/shared/buttons/IconButton';
 import 'react-toastify/dist/ReactToastify.css';
 import styles from './PostsItem.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class PostsItem extends React.Component {
     state = {
@@ -23,18 +23,18 @@ class PostsItem extends React.Component {
 
     render() {
         return (
-            <div className={cb('wrapper')}>
-                <div className={cb('image')}>
+            <div className={scss('wrapper')}>
+                <div className={scss('image')}>
                     <img src={this.props.data.imageUrl} alt={this.props.data.title} />
                 </div>
-                <div className={cb('container')}>
+                <div className={scss('container')}>
                     <h1>{this.props.data.title}</h1>
-                    <p className={cb('overview')}>{this.props.data.overview}</p>
-                    <p className={cb('content')}>{this.props.data.content}</p>
+                    <p className={scss('overview')}>{this.props.data.overview}</p>
+                    <p className={scss('content')}>{this.props.data.content}</p>
                 </div>
-                <div className={cb('action')}>
+                <div className={scss('action')}>
                     <IconButton
-                        className={cb('edit')}
+                        className={scss('edit')}
                         size={'medium'}
                         color={'blur'}
                         onClick={() => this.props.handleActiveModal(this.props.data)}
@@ -42,7 +42,7 @@ class PostsItem extends React.Component {
                         <BiEditAlt />
                     </IconButton>
                     <IconButton
-                        className={cb('delete')}
+                        className={scss('delete')}
                         size={'medium'}
                         color={'blur'}
                         onClick={() => this.props.handleActiveDialog(this.props.data)}

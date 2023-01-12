@@ -1,6 +1,4 @@
 import React from 'react';
-// redux and action
-import { connect } from 'react-redux';
 // style
 import classNames from 'classnames/bind';
 import styles from './OrderProductItem.module.scss';
@@ -35,12 +33,4 @@ class OrderProductItem extends React.Component {
 
 const ItemPrice = (props) => <span>{props.value.toLocaleString('vn-VI', { style: 'currency', currency: 'VND' })}</span>;
 
-const mapStateToProps = (state) => ({
-    // cart: state.cart,
-});
-
-const mapActionsToProps = (dispatch) => ({
-    //
-});
-
-export default connect(mapStateToProps, mapActionsToProps)(OrderProductItem);
+export default OrderProductItem;

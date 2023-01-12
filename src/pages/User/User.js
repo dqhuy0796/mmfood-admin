@@ -13,7 +13,7 @@ import Button from '~/components/shared/buttons/Button';
 import { userService } from '~/services';
 import styles from './User.module.scss';
 
-const cb = classNames.bind(styles);
+const scss = classNames.bind(styles);
 
 class User extends React.Component {
     state = {
@@ -205,10 +205,10 @@ class User extends React.Component {
 
     render() {
         return (
-            <div className={cb('wrapper')}>
+            <div className={scss('wrapper')}>
                 <PageTitle title={'Quản lý tài khoản'} />
-                <div className={cb('content')}>
-                    <ul className={cb('header')}>
+                <div className={scss('content')}>
+                    <ul className={scss('header')}>
                         {this.state.menu.map((item, index) => (
                             <li key={index}>
                                 <Button size={'tiny'} color={'white'} onClick={item.onClick}>
@@ -218,14 +218,14 @@ class User extends React.Component {
                             </li>
                         ))}
                     </ul>
-                    <div className={cb('body')}>
+                    <div className={scss('body')}>
                         <DataTable
                             data={this.state.dataUsers}
                             handleActiveModal={this.handleActiveModal}
                             handleActiveDialog={this.handleActiveDialog}
                         />
                     </div>
-                    <div className={cb('footer')}>
+                    <div className={scss('footer')}>
                         {this.state.modal.active && (
                             <UserModal
                                 {...this.state.modal}
@@ -261,7 +261,7 @@ class User extends React.Component {
 export default User;
 
 const DataTable = (props) => (
-    <table cellPadding="0" cellSpacing="0" border="0" className={cb('main-table')}>
+    <table cellPadding="0" cellSpacing="0" border="0" className={scss('main-table')}>
         <DataTableHead />
         <tbody>
             {props.data.length > 0 ? (
@@ -302,7 +302,7 @@ const DataTableHead = (props) => (
 );
 
 const DataTableRow = (props) => (
-    <tr className={cb('row')}>
+    <tr className={scss('row')}>
         <td>
             <input type={'checkbox'} />
         </td>
@@ -310,7 +310,7 @@ const DataTableRow = (props) => (
         <td>{props.data.name}</td>
         <td>{props.data.birth}</td>
         <td>
-            <div className={cb('avatar')}>
+            <div className={scss('avatar')}>
                 {props.data.avatarUrl && props.data.avatarUrl.length > 10 ? (
                     <img src={props.data.avatarUrl} alt={props.data.name} />
                 ) : (
@@ -326,7 +326,7 @@ const DataTableRow = (props) => (
         <td>{props.data.address}</td>
         <td>{props.data.role}</td>
         <td>
-            <div className={cb('action')}>
+            <div className={scss('action')}>
                 <button onClick={() => props.handleActiveModal(props.data)}>
                     <BiEditAlt />
                 </button>
